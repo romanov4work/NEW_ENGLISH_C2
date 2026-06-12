@@ -132,7 +132,7 @@ function SelectPhase({ onNext }: { onNext: () => void }) {
             <Text style={styles.buttonHalfText}>Знаю</Text>
           </Pressable>
           <Pressable style={[styles.buttonHalf, styles.buttonPrimary]} onPress={onNext}>
-            <Text style={[styles.buttonHalfText, styles.buttonPrimaryText]}>Учить</Text>
+            <Text style={[styles.buttonHalfText, styles.buttonPrimaryText]}>Тренировать</Text>
           </Pressable>
         </View>
       </View>

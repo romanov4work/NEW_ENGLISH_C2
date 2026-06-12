@@ -2,23 +2,24 @@ import { StatusBar } from 'expo-status-bar';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { COLORS, TYPOGRAPHY, SPACING, RADIUS } from '../lib/theme';
+import { Ionicons } from '@expo/vector-icons';
+import { COLORS, TYPOGRAPHY, SPACING, RADIUS, COMMON_STYLES } from '../lib/theme';
 
 const MODULES = [
   [
-    { title: 'Слова', route: '/words' },
+    { title: 'Слова', route: '/words', icon: 'library' },
   ],
   [
-    { title: 'Фонетика', route: '/pronunciation' },
-    { title: 'Грамматика', route: '/grammar' },
+    { title: 'Фонетика', route: '/pronunciation', icon: 'mic' },
+    { title: 'Грамматика', route: '/grammar', icon: 'construct' },
   ],
   [
-    { title: 'Чтение', route: '/reading' },
-    { title: 'Письмо', route: '/writing' },
+    { title: 'Чтение', route: '/reading', icon: 'newspaper' },
+    { title: 'Письмо', route: '/writing', icon: 'create' },
   ],
   [
-    { title: 'Аудирование', route: '/listening' },
-    { title: 'Говорение', route: '/speaking' },
+    { title: 'Аудирование', route: '/listening', icon: 'headset' },
+    { title: 'Говорение', route: '/speaking', icon: 'chatbubbles' },
   ],
 ];
 
@@ -28,8 +29,12 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.screen}>
       <StatusBar style="dark" />
-      <View style={styles.header}>
-        <Text style={styles.title}>Английский C2</Text>
+      <View style={COMMON_STYLES.header}>
+        <Text style={COMMON_STYLES.title}>Английский C2</Text>
+        <View style={styles.spacer} />
+        <Pressable onPress={() => router.push('/settings' as any)}>
+          <Ionicons name="settings-outline" size={28} color={COLORS.black} />
+        </Pressable>
       </View>
       <View style={styles.content}>
         {MODULES.map((row, rowIndex) => (
@@ -40,11 +45,17 @@ export default function Home() {
                 style={row.length === 1 ? styles.cellFull : styles.cell}
                 onPress={() => item.route && router.push(item.route as any)}
               >
+                <Ionicons name={item.icon as any} size={32} color={COLORS.black} />
                 <Text style={styles.cellText}>{item.title}</Text>
               </Pressable>
             ))}
           </View>
         ))}
+      </View>
+      <View style={styles.bottomBar}>
+        <Pressable style={COMMON_STYLES.button} onPress={() => router.push('/unified-train' as any)}>
+          <Text style={COMMON_STYLES.buttonText}>Начать тренировку</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
@@ -52,16 +63,8 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: COLORS.white },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.md,
-    paddingBottom: SPACING.md,
-  },
-  title: { fontSize: 28, fontWeight: '700', color: COLORS.black },
-  content: { paddingHorizontal: SPACING.lg, paddingTop: SPACING.lg },
+  spacer: { flex: 1 },
+  content: { flex: 1, paddingHorizontal: SPACING.lg, paddingTop: SPACING.lg, paddingBottom: 120 },
   row: {
     flexDirection: 'row',
     gap: SPACING.sm,
@@ -91,5 +94,16 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.size.lg,
     color: COLORS.black,
     fontWeight: TYPOGRAPHY.weight.semibold,
+    marginTop: SPACING.sm,
+  },
+  bottomBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingHorizontal: SPACING.lg,
+    paddingBottom: SPACING.xxxl,
+    paddingTop: SPACING.md,
+    backgroundColor: COLORS.white,
   },
 });

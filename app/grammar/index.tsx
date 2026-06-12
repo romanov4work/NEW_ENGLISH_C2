@@ -3,6 +3,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { COLORS, TYPOGRAPHY, SPACING, RADIUS, COMMON_STYLES } from '../../lib/theme';
+import { Ionicons } from '@expo/vector-icons';
 
 const TABS = ['Сегодня', 'Неделя', 'Месяц', 'Всего'] as const;
 type Tab = (typeof TABS)[number];
@@ -33,7 +34,7 @@ export default function GrammarIndex() {
         <Text style={COMMON_STYLES.title}>Грамматика</Text>
         <View style={styles.spacer} />
         <Pressable onPress={() => router.push('/grammar/train-settings')} style={styles.gear}>
-          <Text style={styles.gearText}>⚙️</Text>
+          <Ionicons name="settings-outline" size={28} color={COLORS.black} />
         </Pressable>
       </View>
 
@@ -90,7 +91,7 @@ export default function GrammarIndex() {
       {/* Кнопка внизу */}
       <View style={styles.bottomBar}>
         <Pressable style={COMMON_STYLES.button} onPress={() => router.push('/grammar/train')}>
-          <Text style={COMMON_STYLES.buttonText}>Учить грамматику</Text>
+          <Text style={COMMON_STYLES.buttonText}>Тренировать грамматику</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -112,7 +113,6 @@ const styles = StyleSheet.create({
   backText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.black },
   spacer: { flex: 1 },
   gear: {},
-  gearText: { fontSize: TYPOGRAPHY.size.xxl, color: COLORS.black },
 
   content: { paddingHorizontal: SPACING.lg, paddingTop: SPACING.sm, paddingBottom: 120 },
 
