@@ -1,22 +1,29 @@
 {
-  "name": "new_english_c2",
-  "version": "1.0.0",
-  "main": "index.ts",
+  "name": "new-english-c2",
+  "version": "8.0.0",
+  "main": "expo-router/entry",
   "dependencies": {
-    "expo": "~56.0.9",
-    "expo-status-bar": "~56.0.4",
-    "react": "19.2.3",
-    "react-native": "0.85.3"
+    "expo": "~54.0.33",
+    "expo-constants": "~18.0.13",
+    "expo-linking": "~8.0.11",
+    "expo-router": "~6.0.23",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-web": "~0.21.0"
   },
   "devDependencies": {
-    "@types/react": "~19.2.2",
-    "typescript": "~6.0.3"
+    "@types/react": "~19.1.0",
+    "typescript": "~5.9.2"
   },
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "start": "expo start --port 8082",
+    "android": "expo start --android --port 8082",
+    "ios": "expo start --ios --port 8082",
+    "web": "expo start --web --port 8082"
   },
   "private": true
 }

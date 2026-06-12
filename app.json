@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "NEW_ENGLISH_C2",
-    "slug": "NEW_ENGLISH_C2",
-    "version": "1.0.0",
+    "name": "Английский C2",
+    "slug": "new-english-c2",
+    "version": "8.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -19,7 +19,12 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "scheme": "new-english-c2"
   }
 }
