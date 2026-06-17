@@ -2,22 +2,25 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { COLORS, TYPOGRAPHY, SPACING, COMMON_STYLES } from '../../../lib/theme';
+import cardsData from '../cards_database/cards_database.json';
 
 export default function CardDetail() {
   const router = useRouter();
   const { id } = useLocalSearchParams();
 
-  // Мок-данные карточки
-  const card = {
-    id,
-    en: 'example',
-    ru: ['пример', 'образец'],
-    examples: [
-      { en: 'For example, you can use this word.', ru: 'Например, вы можете использовать это слово.' },
-    ],
-    status: 'new', // new | studying | learned
-    repeatCount: 0,
-  };
+  // Ищем карточку по ID во всех коллекциях
+  const allCards = cardsData.flatMap(c => c.cards);
+  const card = allCards.find(c => c.id === id);
+
+  if (!card) {
+    return (
+      <SafeAreaView style={styles.screen}>
+        <Text style={{ textAlign: 'center', marginTop: 50, color: COLORS.gray[400] }}>
+          Карточка не найдена
+        </Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -35,15 +38,6 @@ export default function CardDetail() {
           <Text style={styles.wordRu}>{card.ru.join(', ')}</Text>
         </View>
 
-        {/* Примеры */}
-        <Text style={styles.sectionLabel}>ПРИМЕРЫ</Text>
-        {card.examples.map((ex, idx) => (
-          <View key={idx} style={styles.exampleCard}>
-            <Text style={styles.exampleEn}>{ex.en}</Text>
-            <Text style={styles.exampleRu}>{ex.ru}</Text>
-          </View>
-        ))}
-
         {/* Прогресс */}
         <Text style={styles.sectionLabel}>ПРОГРЕСС</Text>
         <View style={styles.progressCard}>
@@ -55,15 +49,14 @@ export default function CardDetail() {
               {card.status === 'learned' && 'Выучено'}
             </Text>
           </View>
-          <View style={styles.progressRow}>
-            <Text style={styles.progressLabel}>Повторений</Text>
-            <Text style={styles.progressValue}>{card.repeatCount}</Text>
-          </View>
         </View>
 
         {/* Кнопки */}
         <View style={styles.actions}>
-          <Pressable style={[styles.actionBtn, styles.actionBtnPrimary]}>
+          <Pressable
+            style={[styles.actionBtn, styles.actionBtnPrimary]}
+            onPress={() => router.push('/words/train')}
+          >
             <Text style={[styles.actionBtnText, styles.actionBtnTextPrimary]}>Тренировать</Text>
           </Pressable>
         </View>

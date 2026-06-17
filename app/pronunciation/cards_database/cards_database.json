@@ -1,0 +1,113 @@
+[
+  {
+    "id": "1",
+    "title": "Базовое произношение A1-A2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "p1",
+        "title": "TH Sound",
+        "ru": "Звук TH",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как правильно произнести 'think'?",
+            "options": ["θɪŋk", "sɪŋk", "fɪŋk", "tɪŋk"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "title": "R Sound",
+        "ru": "Звук R",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как правильно произнести 'red'?",
+            "options": ["red", "wed", "led", "ded"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Подкасты B1-B2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "p3",
+        "title": "Word Stress",
+        "ru": "Ударение в словах",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Где ударение в слове 'important'?",
+            "options": ["im-POR-tant", "IM-por-tant", "im-por-TANT", "im-por-tant"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "title": "Intonation",
+        "ru": "Интонация",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Какая интонация в вопросе 'Are you ready?'?",
+            "options": ["восходящая", "нисходящая", "ровная", "смешанная"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Новости и интервью C1-C2",
+    "active": false,
+    "learned": 0,
+    "total": 2,
+    "cards": [
+      {
+        "id": "p5",
+        "title": "Connected Speech",
+        "ru": "Связная речь",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как произносится 'want to' в связной речи?",
+            "options": ["wanna", "want to", "wantoo", "wan to"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "title": "Accent Reduction",
+        "ru": "Уменьшение акцента",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как избежать русского акцента в 'world'?",
+            "options": ["не говорить 'ворлд', а 'wərld'", "говорить 'ворлд'", "говорить 'волд'", "говорить 'вурлд'"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  }
+]

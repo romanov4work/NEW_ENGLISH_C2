@@ -1,18 +1,13 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { COLORS, TYPOGRAPHY, SPACING, RADIUS, COMMON_STYLES } from '../../lib/theme';
 
-// Мок-данные правил на изучении
-const MOCK_RULES: Array<{ id: string; title: string; ru: string }> = [
-  { id: '1', title: 'Present Continuous', ru: 'Настоящее длительное время' },
-  { id: '2', title: 'Future Simple', ru: 'Простое будущее время' },
-];
+import cardsData from './cards_database/cards_database.json';
 
 export default function Studying() {
   const router = useRouter();
-  const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
@@ -24,6 +19,18 @@ export default function Studying() {
     }
   };
 
+  // Собираем все карточки из всех коллекций
+  const allCards = cardsData.flatMap(collection => collection.cards);
+
+  // Фильтруем только изучаемые
+  const studyingCards = allCards.filter(card => card.status === 'studying');
+
+  const filteredRules = studyingCards.filter(r =>
+    query.trim() === '' ||
+    r.title.toLowerCase().includes(query.toLowerCase()) ||
+    r.ru.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <SafeAreaView style={styles.screen}>
       <View style={COMMON_STYLES.header}>
@@ -32,16 +39,10 @@ export default function Studying() {
         </Pressable>
         <Text style={COMMON_STYLES.title}>Изучаемые правила</Text>
         <View style={styles.spacer} />
-        <Pressable onPress={() => setSearchOpen(!searchOpen)} style={styles.iconBtn}>
-          <Text style={[styles.iconText, searchOpen && styles.iconActive]}>🔍</Text>
-        </Pressable>
-        <Pressable style={styles.iconBtn}>
-          <Text style={styles.iconText}>＋</Text>
-        </Pressable>
       </View>
 
       {/* Строка поиска */}
-      {searchOpen && (
+      
         <View style={styles.searchRow}>
           <TextInput
             style={[
@@ -50,9 +51,9 @@ export default function Studying() {
             ]}
             value={query}
             onChangeText={setQuery}
-            placeholder="Поиск правил..."
+            placeholder="Поиск изучаемого правила..."
             placeholderTextColor={COLORS.gray[300]}
-            autoFocus
+            
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
@@ -62,12 +63,11 @@ export default function Studying() {
             </Pressable>
           )}
         </View>
-      )}
 
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.sectionLabel}>ПРАВИЛ НА ИЗУЧЕНИИ: {MOCK_RULES.length}</Text>
+        <Text style={styles.sectionLabel}>ПРАВИЛ НА ИЗУЧЕНИИ: {filteredRules.length}</Text>
 
-        {MOCK_RULES.map((rule: any) => (
+        {filteredRules.map((rule: any) => (
           <Pressable
             key={rule.id}
             style={styles.ruleCard}
@@ -81,7 +81,7 @@ export default function Studying() {
           </Pressable>
         ))}
 
-        {MOCK_RULES.length === 0 && (
+        {filteredRules.length === 0 && (
           <View style={styles.empty}>
             <Text style={styles.emptyTitle}>Пока ничего нет</Text>
             <Text style={styles.emptyText}>
@@ -99,9 +99,6 @@ const styles = StyleSheet.create({
   back: { paddingRight: SPACING.lg },
   backText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.black },
   spacer: { flex: 1 },
-  iconBtn: { paddingLeft: SPACING.sm },
-  iconText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.gray[700] },
-  iconActive: { color: COLORS.primary },
 
   searchRow: {
     flexDirection: 'row',

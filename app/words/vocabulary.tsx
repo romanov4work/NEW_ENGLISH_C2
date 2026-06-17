@@ -1,18 +1,12 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { COLORS, TYPOGRAPHY, SPACING, RADIUS, COMMON_STYLES } from '../../lib/theme';
-
-// Мок-данные выученных слов
-const MOCK_WORDS = [
-  { id: '1', en: 'example', ru: ['пример', 'образец'] },
-  { id: '2', en: 'vocabulary', ru: ['словарь', 'лексика'] },
-];
+import cardsData from './cards_database/cards_database.json';
 
 export default function Vocabulary() {
   const router = useRouter();
-  const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
@@ -24,6 +18,18 @@ export default function Vocabulary() {
     }
   };
 
+  // Собираем все карточки из всех коллекций
+  const allCards = cardsData.flatMap(collection => collection.cards);
+
+  // Фильтруем только выученные
+  const learnedCards = allCards.filter(card => card.status === 'learned');
+
+  const filteredWords = learnedCards.filter(w =>
+    query.trim() === '' ||
+    w.en.toLowerCase().includes(query.toLowerCase()) ||
+    w.ru.some(r => r.toLowerCase().includes(query.toLowerCase()))
+  );
+
   return (
     <SafeAreaView style={styles.screen}>
       <View style={COMMON_STYLES.header}>
@@ -32,16 +38,10 @@ export default function Vocabulary() {
         </Pressable>
         <Text style={COMMON_STYLES.title}>Выученные слова</Text>
         <View style={styles.spacer} />
-        <Pressable onPress={() => setSearchOpen(!searchOpen)} style={styles.iconBtn}>
-          <Text style={[styles.iconText, searchOpen && styles.iconActive]}>🔍</Text>
-        </Pressable>
-        <Pressable style={styles.iconBtn}>
-          <Text style={styles.iconText}>＋</Text>
-        </Pressable>
       </View>
 
       {/* Строка поиска */}
-      {searchOpen && (
+      
         <View style={styles.searchRow}>
           <TextInput
             style={[
@@ -50,9 +50,9 @@ export default function Vocabulary() {
             ]}
             value={query}
             onChangeText={setQuery}
-            placeholder="Поиск слов..."
+            placeholder="Поиск выученного слова..."
             placeholderTextColor={COLORS.gray[300]}
-            autoFocus
+            
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
@@ -62,12 +62,11 @@ export default function Vocabulary() {
             </Pressable>
           )}
         </View>
-      )}
 
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.sectionLabel}>ВСЕГО ВЫУЧЕНО: {MOCK_WORDS.length}</Text>
+        <Text style={styles.sectionLabel}>ВСЕГО ВЫУЧЕНО: {filteredWords.length}</Text>
 
-        {MOCK_WORDS.map((word) => (
+        {filteredWords.map((word) => (
           <Pressable
             key={word.id}
             style={styles.wordCard}
@@ -81,7 +80,7 @@ export default function Vocabulary() {
           </Pressable>
         ))}
 
-        {MOCK_WORDS.length === 0 && (
+        {filteredWords.length === 0 && (
           <View style={styles.empty}>
             <Text style={styles.emptyTitle}>Пока ничего нет</Text>
             <Text style={styles.emptyText}>
@@ -99,9 +98,6 @@ const styles = StyleSheet.create({
   back: { paddingRight: SPACING.lg },
   backText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.black },
   spacer: { flex: 1 },
-  iconBtn: { paddingLeft: SPACING.sm },
-  iconText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.gray[700] },
-  iconActive: { color: COLORS.primary },
 
   searchRow: {
     flexDirection: 'row',

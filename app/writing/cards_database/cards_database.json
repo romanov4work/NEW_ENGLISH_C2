@@ -1,0 +1,113 @@
+[
+  {
+    "id": "1",
+    "title": "Базовое письмо A1-A2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "wr1",
+        "title": "Simple Email",
+        "ru": "Простое письмо",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как правильно начать неформальное письмо?",
+            "options": ["Hi John,", "Dear Sir,", "To whom it may concern,", "Greetings,"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "wr2",
+        "title": "Postcard",
+        "ru": "Открытка",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как закончить открытку другу?",
+            "options": ["Best wishes, Anna", "Yours faithfully, Anna", "Sincerely, Anna", "Respectfully, Anna"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Подкасты B1-B2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "wr3",
+        "title": "Formal Letter",
+        "ru": "Официальное письмо",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как правильно начать официальное письмо?",
+            "options": ["Dear Sir/Madam,", "Hi there,", "Hello,", "Hey,"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "wr4",
+        "title": "Essay",
+        "ru": "Эссе",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как структурировать эссе?",
+            "options": ["Introduction, Body, Conclusion", "Body, Introduction, Conclusion", "Conclusion, Body, Introduction", "Only Body"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Новости и интервью C1-C2",
+    "active": false,
+    "learned": 0,
+    "total": 2,
+    "cards": [
+      {
+        "id": "wr5",
+        "title": "Research Paper",
+        "ru": "Исследовательская работа",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Что должно быть в Abstract?",
+            "options": ["Brief summary of the research", "Full methodology", "All references", "Acknowledgements"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "wr6",
+        "title": "Critical Review",
+        "ru": "Критический обзор",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как начать критический обзор?",
+            "options": ["This paper examines...", "I think that...", "In my opinion...", "Maybe this..."],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  }
+]

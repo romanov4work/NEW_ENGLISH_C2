@@ -1,19 +1,14 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { COLORS, TYPOGRAPHY, SPACING, RADIUS, COMMON_STYLES } from '../../lib/theme';
-
-const MOCK_COLLECTIONS = [
-  { id: '1', title: 'Базовое аудирование A1-A2', active: true, learned: 0, total: 50 },
-  { id: '2', title: 'Подкасты B1-B2', active: true, learned: 0, total: 80 },
-  { id: '3', title: 'Новости и интервью C1-C2', active: false, learned: 0, total: 120 },
-];
+import cardsData from './cards_database/cards_database.json';
 
 export default function CollectionsScreen() {
   const router = useRouter();
   const [activeIds, setActiveIds] = useState<string[]>(['1', '2']);
-  const [searchOpen, setSearchOpen] = useState(false);
+  
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
@@ -31,23 +26,21 @@ export default function CollectionsScreen() {
     }
   };
 
+  const filteredCollections = cardsData.filter(c =>
+    query.trim() === '' || c.title.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <SafeAreaView style={styles.screen}>
       <View style={COMMON_STYLES.header}>
         <Pressable onPress={handleBack} style={styles.back}>
           <Text style={styles.backText}>◀</Text>
         </Pressable>
-        <Text style={COMMON_STYLES.title}>Коллекции</Text>
+        <Text style={COMMON_STYLES.title}>Коллекции аудио</Text>
         <View style={styles.spacer} />
-        <Pressable onPress={() => setSearchOpen(!searchOpen)} style={styles.iconBtn}>
-          <Text style={[styles.iconText, searchOpen && styles.iconActive]}>🔍</Text>
-        </Pressable>
-        <Pressable style={styles.iconBtn}>
-          <Text style={styles.iconText}>＋</Text>
-        </Pressable>
       </View>
 
-      {searchOpen && (
+      
         <View style={styles.searchRow}>
           <TextInput
             style={[
@@ -56,9 +49,9 @@ export default function CollectionsScreen() {
             ]}
             value={query}
             onChangeText={setQuery}
-            placeholder="Поиск аудио..."
+            placeholder="Поиск коллекции аудио..."
             placeholderTextColor={COLORS.gray[300]}
-            autoFocus
+            
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
@@ -68,12 +61,11 @@ export default function CollectionsScreen() {
             </Pressable>
           )}
         </View>
-      )}
 
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.sectionLabel}>ВЫБЕРИТЕ ДЛЯ ТРЕНИРОВКИ</Text>
 
-        {MOCK_COLLECTIONS.map((c) => {
+        {filteredCollections.map((c) => {
           const isActive = activeIds.includes(c.id);
           const pct = c.total > 0 ? Math.round((c.learned / c.total) * 100) : 0;
 
@@ -85,7 +77,7 @@ export default function CollectionsScreen() {
                 </View>
               </Pressable>
 
-              <Pressable style={styles.tileMain} onPress={() => {}}>
+              <Pressable style={styles.tileMain} onPress={() => router.push('/listening/collection/' + c.id)}>
                 <View style={styles.tileText}>
                   <Text style={[styles.tileTitle, isActive && styles.tileTitleActive]} numberOfLines={1}>
                     {c.title}
@@ -116,9 +108,6 @@ const styles = StyleSheet.create({
   back: { paddingRight: SPACING.lg },
   backText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.black },
   spacer: { flex: 1 },
-  iconBtn: { paddingLeft: SPACING.sm },
-  iconText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.gray[700] },
-  iconActive: { color: COLORS.primary },
 
   searchRow: {
     flexDirection: 'row',

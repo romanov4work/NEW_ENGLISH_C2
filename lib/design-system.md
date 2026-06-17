@@ -5,208 +5,234 @@
 
 ---
 
-## 🎨 ЦВЕТОВАЯ СХЕМА (из theme.ts)
+## 🎨 ДИЗАЙН-СИСТЕМА
 
-### Основные цвета:
-- **Белый фон**: `COLORS.white` (#FFFFFF)
-- **Черный текст/кнопки**: `COLORS.black` (#000000)
-- **Акцент (primary)**: `COLORS.primary` (черный #000000)
-- **Серые оттенки**:
-  - `COLORS.gray[50]` — фон карточек (#F9FAFB)
-  - `COLORS.gray[100]` — borders (#F3F4F6)
-  - `COLORS.gray[200]` — светло-серый (#E5E7EB)
-  - `COLORS.gray[300]` — placeholder (#D1D5DB)
-  - `COLORS.gray[400]` — section labels (#9CA3AF)
-  - `COLORS.gray[500]` — вторичный текст (#6B7280)
-  - `COLORS.gray[600]` — темно-серый текст (#4B5563)
-  - `COLORS.gray[700]` — иконки (#374151)
+### Источник всех значений
+**ВСЕ цвета, размеры, отступы, радиусы берутся из `lib/theme.ts`** — это единственный источник правды.
 
-### Типографика:
-- **size.xs**: 10
-- **size.sm**: 12
-- **size.base**: 14
-- **size.md**: 16
-- **size.lg**: 18
-- **size.xl**: 20
-- **size.xxl**: 24
-- **size.xxxl**: 32
-
-### Отступы (SPACING):
-- **xs**: 4
-- **sm**: 8
-- **md**: 12
-- **lg**: 16
-- **xl**: 20
-- **xxl**: 24
-- **xxxl**: 32
-
-### Радиусы (RADIUS):
-- **sm**: 4
-- **md**: 8
-- **lg**: 12
-- **xl**: 16
+### Адаптивность
+Приложение ограничено `maxWidth: 480px` (см. `app/_layout.tsx`) — на планшетах и веб-версии контент остаётся мобильным с белыми полями по бокам.
 
 ---
 
-## 📱 СТРУКТУРА МОДУЛЯ (8 экранов)
+## 📱 СТРУКТУРА МОДУЛЯ (7 экранов)
 
 ### 1️⃣ **index.tsx** — Главная страница модуля
 
-**Элементы:**
-- **Шапка (header)**:
-  - Кнопка назад: `◀` (fontSize: xl, color: black)
-  - Название модуля: `<Text style={COMMON_STYLES.title}>Слова</Text>`
-  - Spacer (flex: 1)
-  - Иконка настроек: `⚙️` (fontSize: xxl) → `/MODULE_NAME/train-settings`
+**Шапка:**
+- Кнопка назад: `◀` (fontSize: TYPOGRAPHY.size.xl, color: COLORS.black)
+- Название модуля: `<Text style={COMMON_STYLES.title}>Название</Text>`
+- Spacer: `<View style={{ flex: 1 }} />`
+- Иконка настроек: `<Ionicons name="settings-outline" size={28} color={COLORS.black} />`
+  - Переход: `/MODULE_NAME/train-settings`
 
-- **Счётчики (2 карточки в ряд + 1 полная)**:
-  - Выученные (learned) → `/MODULE_NAME/vocabulary`
-  - Изучаемые (studying) → `/MODULE_NAME/studying`
-  - Коллекции (collections) → `/MODULE_NAME/collections`
-  
-  **Стиль карточки счётчика:**
-  ```
-  backgroundColor: COLORS.gray[50]
-  borderRadius: RADIUS.lg
-  paddingVertical: SPACING.xl
-  paddingHorizontal: SPACING.lg
-  alignItems: center
-  minHeight: 80
-  ```
-  
-  **Контент:**
-  - Цифра: fontSize 32, fontWeight bold, color black
-  - Подпись: fontSize md / 1.4, color gray[500], semibold
+**Счётчики (3 карточки):**
+- 2 карточки в ряд: "Выученные" + "Изучаемые"
+- 1 полная карточка: "Коллекции"
+- Переходы: `/vocabulary`, `/studying`, `/collections`
 
-- **Статистика с табами**:
-  - **Табы**: Сегодня | Неделя | Месяц | Всего
-    - Неактивный таб: fontSize md / 1.4, color gray[500], fontWeight bold
-    - Активный таб: color black
-    - Выравнивание: первый — left, центральные — center, последний — right
-  
-  - **Строки статистики** (StatRow):
-    - Повторений
-    - Добавлено на изучение
-    - Начато изучение
-    - Полностью выучено
-    - Время обучения (мин)
-    
-    **Стиль:**
-    ```
-    flexDirection: row
-    justifyContent: space-between
-    paddingVertical: 14
-    borderBottomWidth: hairline
-    borderBottomColor: gray[100]
-    ```
+Стиль карточки:
+```typescript
+{
+  flex: 1,
+  backgroundColor: COLORS.gray[50],
+  borderRadius: RADIUS.lg,
+  paddingVertical: SPACING.xl,
+  paddingHorizontal: SPACING.lg,
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: 80,
+}
+```
 
-- **Кнопка внизу (bottomBar)**:
-  - Позиция: absolute, bottom: 0
-  - Кнопка: `COMMON_STYLES.button`
-  - Текст: "Учить [MODULE_NAME]" → `/MODULE_NAME/train`
+Контент карточки:
+- Цифра: `fontSize: 32, fontWeight: TYPOGRAPHY.weight.bold, color: COLORS.black, marginBottom: SPACING.xs`
+- Подпись: `fontSize: TYPOGRAPHY.size.md / 1.4, color: COLORS.gray[500], fontWeight: TYPOGRAPHY.weight.semibold, textAlign: center`
+
+**Статистика с табами:**
+- Табы: `['Сегодня', 'Неделя', 'Месяц', 'Всего']`
+- Неактивный таб: `fontSize: TYPOGRAPHY.size.md / 1.4, color: COLORS.gray[500], fontWeight: TYPOGRAPHY.weight.bold`
+- Активный таб: `color: COLORS.black`
+- Выравнивание табов:
+  - Первый (index 0): `textAlign: 'left'`
+  - Центральные (index 1, 2): `textAlign: 'center'`
+  - Последний (index 3): `textAlign: 'right'`
+
+**StatRow (строка статистики):**
+```typescript
+{
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  paddingVertical: 14,
+  borderBottomWidth: StyleSheet.hairlineWidth,
+  borderBottomColor: COLORS.gray[100],
+}
+```
+- Label: `fontSize: TYPOGRAPHY.size.base, color: COLORS.black`
+- Value: `fontSize: TYPOGRAPHY.size.base, fontWeight: TYPOGRAPHY.weight.bold, color: COLORS.black`
+
+**Кнопка внизу (bottomBar):**
+```typescript
+{
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  paddingHorizontal: SPACING.lg,
+  paddingBottom: SPACING.xxxl,
+  paddingTop: SPACING.md,
+  backgroundColor: COLORS.white,
+}
+```
+Кнопка: `COMMON_STYLES.button` с текстом "Тренировать [MODULE_NAME]"
 
 ---
 
 ### 2️⃣ **collections.tsx** — Список коллекций
 
-**Элементы:**
-- **Шапка**:
-  - Кнопка назад: `◀`
-  - Название: "Коллекции"
-  - Spacer
-  - Иконка поиска: `🔍` (fontSize xl, color gray[700], active → primary)
-  - Иконка добавить: `＋` (fontSize xl, color gray[700])
+**Шапка:**
+- Кнопка назад: `◀`
+- Название: `COMMON_STYLES.title` → "Коллекции"
+- Spacer
+- Иконка поиска: `🔍` (fontSize: TYPOGRAPHY.size.xl, color: COLORS.gray[700])
+  - Активна: `color: COLORS.primary`
+- Иконка добавить: `＋` (fontSize: TYPOGRAPHY.size.xl, color: COLORS.gray[700])
 
-- **Строка поиска** (если открыт поиск):
-  ```
-  backgroundColor: gray[50]
-  borderRadius: RADIUS.md
-  height: 40
-  borderWidth: 2
-  borderColor: transparent (в фокусе → black)
-  ```
-  - Кнопка очистки: `✕` справа (если есть текст)
+**Строка поиска (если открыт):**
+```typescript
+searchInput: {
+  flex: 1,
+  height: 40,
+  backgroundColor: COLORS.gray[50],
+  borderRadius: RADIUS.md,
+  paddingHorizontal: SPACING.lg,
+  fontSize: TYPOGRAPHY.size.base,
+  color: COLORS.black,
+  borderWidth: 2,
+  borderColor: 'transparent',
+}
+searchInputFocused: {
+  borderColor: COLORS.black,
+}
+```
+- Кнопка очистки: `✕` (position: absolute, right: SPACING.sm)
+- Цвет крестика: `fontSize: TYPOGRAPHY.size.lg, color: COLORS.gray[400]`
 
-- **Section Label**: "ВЫБЕРИТЕ ДЛЯ ТРЕНИРОВКИ"
-  ```
-  fontSize: xs
-  color: gray[400]
-  letterSpacing: 1
-  fontWeight: semibold
-  marginTop: md, marginBottom: sm
-  ```
+**Section Label:**
+```typescript
+{
+  fontSize: TYPOGRAPHY.size.xs,
+  color: COLORS.gray[400],
+  letterSpacing: 1,
+  fontWeight: TYPOGRAPHY.weight.semibold,
+  marginTop: SPACING.md,
+  marginBottom: SPACING.sm,
+  paddingHorizontal: SPACING.xs,
+}
+```
 
-- **Элемент коллекции (tile)**:
-  ```
-  flexDirection: row
-  backgroundColor: gray[50]
-  borderRadius: RADIUS.lg
-  marginBottom: sm
-  ```
-  
-  - **Чекбокс** (слева):
-    - Размер: 22×22, borderRadius sm
-    - Неактивный: border gray[200], bg white
-    - Активный: border primary, bg primary, галочка `✓` белая
-  
-  - **Основная область** (tileMain):
-    - Название коллекции (bold, md, color black или primary если активна)
-    - Метаинфо: "Выучено X (Y%)" или "Не начато" (sm, gray[500])
-    - Прогресс-бар: высота 3px, bg gray[100], fill primary
-    - Стрелка: `›` (xl, gray[200])
+**Элемент коллекции (tile):**
+```typescript
+{
+  flexDirection: 'row',
+  alignItems: 'center',
+  backgroundColor: COLORS.gray[50],
+  borderRadius: RADIUS.lg,
+  marginBottom: SPACING.sm,
+}
+```
 
-- **Подсказка внизу**:
-  ```
-  fontSize: sm
-  color: gray[300]
-  textAlign: center
-  marginTop: lg
-  ```
+Чекбокс:
+```typescript
+checkbox: {
+  width: 22,
+  height: 22,
+  borderRadius: RADIUS.sm,
+  borderWidth: 2,
+  borderColor: COLORS.gray[200],
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: COLORS.white,
+}
+checkboxChecked: {
+  borderColor: COLORS.primary,
+  backgroundColor: COLORS.primary,
+}
+checkmark: {
+  color: COLORS.white,
+  fontSize: TYPOGRAPHY.size.sm,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  lineHeight: 16,
+}
+```
+
+Контент:
+- Название: `fontSize: TYPOGRAPHY.size.md, fontWeight: TYPOGRAPHY.weight.bold, color: COLORS.black` (активная → `color: COLORS.primary`)
+- Метаинфо: `fontSize: TYPOGRAPHY.size.sm, color: COLORS.gray[500], marginTop: 2`
+- Прогресс-бар: `height: 3, backgroundColor: COLORS.gray[100], borderRadius: 2, marginTop: 6`
+  - Fill: `height: 3, backgroundColor: COLORS.primary, borderRadius: 2`
+- Стрелка: `›` (fontSize: TYPOGRAPHY.size.xl, color: COLORS.gray[200])
 
 ---
 
 ### 3️⃣ **vocabulary.tsx** — Список выученных карточек
 
-**Элементы:**
-- **Шапка**:
-  - Кнопка назад: `◀`
-  - Название: "Выученные [MODULE_NAME]"
-  - Spacer
-  - Иконка поиска: `🔍`
-  - Иконка добавить: `＋`
+**Аналогично collections.tsx**, но:
+- Заголовок: "Выученные [MODULE_NAME]"
+- Section Label: "ВСЕГО ВЫУЧЕНО: X"
+- Карточка слова:
+```typescript
+wordCard: {
+  ...COMMON_STYLES.card,
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginBottom: SPACING.sm,
+}
+wordText: { flex: 1 }
+wordEn: {
+  fontSize: TYPOGRAPHY.size.md,
+  fontWeight: TYPOGRAPHY.weight.semibold,
+  color: COLORS.black,
+  marginBottom: 2,
+}
+wordRu: {
+  fontSize: TYPOGRAPHY.size.sm,
+  color: COLORS.gray[600],
+}
+arrow: {
+  fontSize: TYPOGRAPHY.size.xl,
+  color: COLORS.gray[200],
+  marginLeft: SPACING.sm,
+}
+```
 
-- **Строка поиска** (аналогично collections)
-
-- **Section Label**: "ВСЕГО ВЫУЧЕНО: X"
-
-- **Карточка слова (wordCard)**:
-  ```
-  ...COMMON_STYLES.card
-  flexDirection: row
-  alignItems: center
-  marginBottom: sm
-  ```
-  
-  - **Текст** (wordText):
-    - EN: fontSize md, semibold, black, marginBottom 2
-    - RU: fontSize sm, gray[600]
-  
-  - **Стрелка**: `›` (xl, gray[200])
-
-- **Empty state** (если нет карточек):
-  ```
-  paddingVertical: 64
-  alignItems: center
-  ```
-  - Заголовок: "Пока ничего нет" (lg, bold, black)
-  - Текст: описание (base, gray[500], center)
+**Empty state:**
+```typescript
+empty: {
+  alignItems: 'center',
+  paddingVertical: 64,
+}
+emptyTitle: {
+  fontSize: TYPOGRAPHY.size.lg,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  color: COLORS.black,
+  marginBottom: SPACING.sm,
+}
+emptyText: {
+  fontSize: TYPOGRAPHY.size.base,
+  color: COLORS.gray[500],
+  textAlign: 'center',
+  paddingHorizontal: SPACING.xxxl,
+}
+```
 
 ---
 
 ### 4️⃣ **studying.tsx** — Карточки на изучении
 
-**Элементы:**
-- Аналогично `vocabulary.tsx`
+**Идентично vocabulary.tsx**, но:
+- Заголовок: "Изучаемые [MODULE_NAME]"
 - Section Label: "СЛОВ НА ИЗУЧЕНИИ: X"
 - Empty text: "Начните обучение, и здесь появятся слова, которые вы сейчас изучаете"
 
@@ -214,223 +240,445 @@
 
 ### 5️⃣ **train.tsx** — Тренировка
 
-**Фазы:** review → select → exercises → results
+**Фазы:** `review` → `select` → `exercises` → `results`
 
-**Элементы:**
-- **Шапка**:
-  - Кнопка назад: `◀`
-  - Название: "Тренировка"
+**Прогресс-бар (3 секции):**
+```typescript
+progressBar: {
+  flexDirection: 'row',
+  marginBottom: SPACING.xs,
+}
+progressSection: {
+  flex: 1,
+  flexDirection: 'row',
+  gap: 4,
+}
+progressSegment: {
+  flex: 1,
+  height: 4,
+  backgroundColor: COLORS.gray[100],
+  borderRadius: 2,
+}
+progressSegmentActive: {
+  backgroundColor: COLORS.black,
+}
+progressDivider: {
+  width: 8,
+}
+```
 
-- **Прогресс-бар** (три секции):
-  ```
-  flexDirection: row
-  gap между секциями: 8
-  ```
-  
-  - **Сегмент прогресса**:
-    ```
-    flex: 1
-    height: 4
-    borderRadius: 2
-    backgroundColor: gray[100] (неактивный) | black (активный)
-    ```
-  
-  - **Подписи** (под прогресс-баром):
-    - Повторение | Выбор | Упражнения
-    - fontSize: xs, color gray[500], semibold, textAlign center
+**Подписи под прогресс-баром:**
+```typescript
+progressLabel: {
+  fontSize: TYPOGRAPHY.size.xs,
+  color: COLORS.gray[500],
+  fontWeight: TYPOGRAPHY.weight.semibold,
+}
+```
+Тексты: "Повторение" | "Выбор" | "Упражнения"
 
-- **Контент фазы**:
-  - **phaseTitle**: fontSize xxl, bold, black, center
-  - **phaseText**: fontSize base, gray[500], center, marginBottom xxxl
-  
-  - **Карточка** (card):
-    ```
-    ...COMMON_STYLES.card
-    alignItems: center
-    paddingVertical: 48
-    ```
-    - Слово: fontSize 32, bold, black
-    - Перевод: fontSize lg, gray[600]
+**Контент фазы:**
+```typescript
+phaseTitle: {
+  fontSize: TYPOGRAPHY.size.xxl,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  color: COLORS.black,
+  textAlign: 'center',
+  marginBottom: SPACING.sm,
+}
+phaseText: {
+  fontSize: TYPOGRAPHY.size.base,
+  color: COLORS.gray[500],
+  textAlign: 'center',
+  marginBottom: SPACING.xxxl,
+}
+```
 
-- **Кнопки внизу (bottomBar)**:
-  - **Одна кнопка**: `COMMON_STYLES.button` (черная, полная ширина)
-  
-  - **Две кнопки** (select фаза):
-    ```
-    flexDirection: row
-    gap: sm
-    ```
-    - Левая (Знаю): white bg, border primary, text primary
-    - Правая (Учить): bg primary, text white
+**Карточка:**
+```typescript
+card: {
+  ...COMMON_STYLES.card,
+  alignItems: 'center',
+  paddingVertical: 48,
+}
+cardWord: {
+  fontSize: 32,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  color: COLORS.black,
+  marginBottom: SPACING.sm,
+}
+cardTranslation: {
+  fontSize: TYPOGRAPHY.size.lg,
+  color: COLORS.gray[600],
+}
+```
 
-- **Results фаза**:
-  - StatRow: label + value (аналогично index.tsx)
+**Кнопки внизу (bottomBar):**
+- Одна кнопка: `COMMON_STYLES.button`
+- Две кнопки (select фаза):
+```typescript
+buttonRow: {
+  flexDirection: 'row',
+  gap: SPACING.sm,
+}
+buttonHalf: {
+  flex: 1,
+  backgroundColor: COLORS.white,
+  borderWidth: 2,
+  borderColor: COLORS.primary,
+  borderRadius: 14,
+  paddingVertical: 18,
+  alignItems: 'center',
+}
+buttonHalfText: {
+  fontSize: TYPOGRAPHY.size.lg,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  color: COLORS.primary,
+}
+buttonPrimary: {
+  backgroundColor: COLORS.primary,
+}
+buttonPrimaryText: {
+  color: COLORS.white,
+}
+```
+
+**Results фаза:**
+- Использует `statsCard` с `COMMON_STYLES.card`
+- StatRow аналогично index.tsx
 
 ---
 
 ### 6️⃣ **train-settings.tsx** — Настройки тренировки
 
-**Элементы:**
-- **Шапка**: Кнопка назад + "Настройки"
+**Section Label (первая):**
+```typescript
+sectionLabelFirst: {
+  fontSize: TYPOGRAPHY.size.xs,
+  color: COLORS.gray[400],
+  letterSpacing: 1,
+  fontWeight: TYPOGRAPHY.weight.semibold,
+  marginBottom: SPACING.lg,
+}
+```
 
-- **Секция** (section):
-  ```
-  sectionLabel:
-    fontSize: xs
-    color: gray[400]
-    letterSpacing: 1
-    fontWeight: semibold
-    marginTop: xxxl
-    marginBottom: lg
-    borderTopWidth: 2
-    borderTopColor: gray[100]
-  ```
+**Section Label (остальные):**
+```typescript
+sectionLabel: {
+  fontSize: TYPOGRAPHY.size.xs,
+  color: COLORS.gray[400],
+  letterSpacing: 1,
+  fontWeight: TYPOGRAPHY.weight.semibold,
+  marginTop: SPACING.xxxl,
+  marginBottom: SPACING.lg,
+  paddingTop: SPACING.xl,
+  borderTopWidth: 2,
+  borderTopColor: COLORS.gray[100],
+}
+```
 
-- **Subsection Label**:
-  ```
-  fontSize: sm
-  color: black
-  fontWeight: semibold
-  marginTop: lg, marginBottom: sm
-  ```
+**Subsection Label:**
+```typescript
+{
+  fontSize: TYPOGRAPHY.size.sm,
+  color: COLORS.black,
+  fontWeight: TYPOGRAPHY.weight.semibold,
+  marginTop: SPACING.lg,
+  marginBottom: SPACING.sm,
+}
+```
 
-- **Опции (кнопки выбора)**:
-  - **optionsGrid** (сетка 7 колонок для чисел):
-    ```
-    flexDirection: row
-    flexWrap: wrap
-    gap: sm
-    ```
-    - Кнопка: width 14.28%, minWidth 45, paddingVertical md
-    - Неактивная: bg gray[50], border transparent
-    - Активная: bg primary, border primary, text white
+**Опции (сетка 7 колонок):**
+```typescript
+optionsGrid: {
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: SPACING.sm,
+  marginBottom: SPACING.sm,
+}
+optionUniform: {
+  width: 'calc(14.28% - 7px)',
+  minWidth: 45,
+  paddingVertical: SPACING.md,
+  backgroundColor: COLORS.gray[50],
+  borderRadius: RADIUS.md,
+  borderWidth: 2,
+  borderColor: 'transparent',
+  alignItems: 'center',
+  justifyContent: 'center',
+}
+optionActive: {
+  backgroundColor: COLORS.primary,
+  borderColor: COLORS.primary,
+}
+optionText: {
+  fontSize: TYPOGRAPHY.size.base,
+  fontWeight: TYPOGRAPHY.weight.semibold,
+  color: COLORS.black,
+}
+optionTextActive: {
+  color: COLORS.white,
+}
+```
 
-  - **optionsRow** (ряд кнопок):
-    - Аналогично, но без фиксированной ширины
+**Опции (ряд):**
+```typescript
+optionsRow: {
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: SPACING.sm,
+}
+option: {
+  paddingVertical: SPACING.md,
+  paddingHorizontal: SPACING.xl,
+  backgroundColor: COLORS.gray[50],
+  borderRadius: RADIUS.md,
+  borderWidth: 2,
+  borderColor: 'transparent',
+}
+```
 
-- **SettingRow** (строка настройки):
-  ```
-  flexDirection: row
-  justifyContent: space-between
-  alignItems: center
-  paddingVertical: lg
-  borderBottomWidth: hairline
-  ```
-  
-  - **Toggle (переключатель)**:
-    ```
-    width: 51, height: 31, borderRadius: 16
-    backgroundColor: gray[200] (off) | black (on)
-    thumb: width 27, height 27, borderRadius 14, bg white
-    анимация: translateX от 0 до 20
-    ```
+**SettingRow:**
+```typescript
+settingRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  paddingVertical: SPACING.lg,
+  borderBottomWidth: StyleSheet.hairlineWidth,
+  borderBottomColor: COLORS.gray[100],
+}
+settingRowLast: {
+  borderBottomWidth: 0,
+}
+settingLabel: {
+  fontSize: TYPOGRAPHY.size.base,
+  color: COLORS.black,
+}
+```
 
-- **Модальное окно (numpad)**:
-  - Затемнение: rgba(0,0,0,0.5)
-  - Контент: white bg, borderRadius lg, padding xl, width 300
-  - Дисплей: bg gray[50], fontSize 24, bold
-  - Кнопки цифр: 3×4 сетка, aspectRatio 1, bg gray[50], borderRadius md
+**Toggle (переключатель):**
+```typescript
+toggle: {
+  width: 51,
+  height: 31,
+  borderRadius: 16,
+  backgroundColor: COLORS.gray[200],
+  justifyContent: 'center',
+  padding: 2,
+}
+toggleActive: {
+  backgroundColor: COLORS.black,
+}
+toggleThumb: {
+  width: 27,
+  height: 27,
+  borderRadius: 14,
+  backgroundColor: COLORS.white,
+}
+// Анимация: translateX от 0 до 20
+```
 
-- **Кнопки действий** (экспорт/импорт/сброс):
-  ```
-  ...COMMON_STYLES.card
-  alignItems: center
-  marginBottom: sm
-  ```
+**Модальное окно (numpad):**
+```typescript
+modalOverlay: {
+  flex: 1,
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+modalContent: {
+  backgroundColor: COLORS.white,
+  borderRadius: RADIUS.lg,
+  padding: SPACING.xl,
+  width: 300,
+}
+modalTitle: {
+  fontSize: TYPOGRAPHY.size.base,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  color: COLORS.black,
+  textAlign: 'center',
+  marginBottom: SPACING.lg,
+  lineHeight: 22,
+}
+modalDisplay: {
+  backgroundColor: COLORS.gray[50],
+  borderRadius: RADIUS.md,
+  paddingVertical: SPACING.lg,
+  paddingHorizontal: SPACING.xl,
+  marginBottom: SPACING.lg,
+  alignItems: 'center',
+}
+modalDisplayText: {
+  fontSize: 24,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  color: COLORS.black,
+}
+numpadContainer: {
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: SPACING.sm,
+}
+numpadKey: {
+  width: 'calc(33.33% - 6px)',
+  aspectRatio: 1,
+  backgroundColor: COLORS.gray[50],
+  borderRadius: RADIUS.md,
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+numpadKeyText: {
+  fontSize: TYPOGRAPHY.size.xl,
+  fontWeight: TYPOGRAPHY.weight.semibold,
+  color: COLORS.black,
+}
+```
+
+**Кнопки действий:**
+```typescript
+actionBtn: {
+  ...COMMON_STYLES.card,
+  alignItems: 'center',
+  marginBottom: SPACING.sm,
+}
+actionBtnText: {
+  fontSize: TYPOGRAPHY.size.base,
+  fontWeight: TYPOGRAPHY.weight.semibold,
+  color: COLORS.black,
+}
+```
 
 ---
 
-### 7️⃣ **settings.tsx** — Меню настроек модуля
+### 7️⃣ **card/[id].tsx** — Детальный просмотр карточки
 
-**Структура:**
-- Список пунктов меню
-- Каждый пункт → подраздел настроек
-- Аналогичные стили SettingRow из train-settings.tsx
+**Карточка слова:**
+```typescript
+wordCard: {
+  ...COMMON_STYLES.card,
+  alignItems: 'center',
+  paddingVertical: SPACING.xxxl,
+  marginTop: SPACING.lg,
+}
+wordEn: {
+  fontSize: 32,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  color: COLORS.black,
+  marginBottom: SPACING.sm,
+}
+wordRu: {
+  fontSize: TYPOGRAPHY.size.lg,
+  color: COLORS.gray[600],
+}
+```
 
----
+**Карточка примера:**
+```typescript
+exampleCard: {
+  ...COMMON_STYLES.card,
+  marginBottom: SPACING.sm,
+}
+exampleEn: {
+  fontSize: TYPOGRAPHY.size.base,
+  color: COLORS.black,
+  marginBottom: SPACING.xs,
+}
+exampleRu: {
+  fontSize: TYPOGRAPHY.size.sm,
+  color: COLORS.gray[600],
+}
+```
 
-### 8️⃣ **card/[id].tsx** — Детальный просмотр карточки
+**Карточка прогресса:**
+```typescript
+progressCard: {
+  ...COMMON_STYLES.card,
+}
+progressRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  paddingVertical: 14,
+  borderBottomWidth: StyleSheet.hairlineWidth,
+  borderBottomColor: COLORS.gray[100],
+}
+progressLabel: {
+  fontSize: TYPOGRAPHY.size.base,
+  color: COLORS.black,
+}
+progressValue: {
+  fontSize: TYPOGRAPHY.size.base,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  color: COLORS.black,
+}
+```
 
-**Элементы:**
-- **Шапка**: Кнопка назад + "Карточка"
-
-- **Карточка слова** (wordCard):
-  ```
-  ...COMMON_STYLES.card
-  alignItems: center
-  paddingVertical: xxxl
-  marginTop: lg
-  ```
-  - EN: fontSize 32, bold, black
-  - RU: fontSize lg, gray[600]
-
-- **Section Label**: "ПРИМЕРЫ"
-
-- **Карточка примера** (exampleCard):
-  ```
-  ...COMMON_STYLES.card
-  marginBottom: sm
-  ```
-  - EN: fontSize base, black, marginBottom xs
-  - RU: fontSize sm, gray[600]
-
-- **Section Label**: "ПРОГРЕСС"
-
-- **Карточка прогресса** (progressCard):
-  - progressRow: label + value (аналогично StatRow)
-  - Показывает: Статус, Повторений
-
-- **Кнопка действия**:
-  ```
-  backgroundColor: primary
-  borderRadius: 14
-  paddingVertical: 18
-  alignItems: center
-  marginTop: xl
-  ```
-  - Текст: "Тренировать" (lg, bold, white)
+**Кнопка действия:**
+```typescript
+actionBtn: {
+  flex: 1,
+  backgroundColor: COLORS.primary,
+  borderRadius: 14,
+  paddingVertical: 18,
+  alignItems: 'center',
+}
+actionBtnText: {
+  fontSize: TYPOGRAPHY.size.lg,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  color: COLORS.white,
+}
+```
 
 ---
 
 ## 🧩 ОБЩИЕ КОМПОНЕНТЫ (COMMON_STYLES из theme.ts)
 
-### Header:
-```
-flexDirection: row
-alignItems: center
-paddingHorizontal: lg
-paddingVertical: md
-backgroundColor: white
-```
-
-### Title:
-```
-fontSize: xl
-fontWeight: bold
-color: black
+### header:
+```typescript
+{
+  flexDirection: 'row',
+  alignItems: 'center',
+  paddingHorizontal: SPACING.xl,
+  paddingTop: SPACING.lg,
+  paddingBottom: SPACING.sm,
+}
 ```
 
-### Card:
-```
-backgroundColor: gray[50]
-borderRadius: lg
-paddingVertical: lg
-paddingHorizontal: xl
-```
-
-### Button:
-```
-backgroundColor: black
-borderRadius: 14
-paddingVertical: 18
-alignItems: center
+### title:
+```typescript
+{
+  fontSize: TYPOGRAPHY.size.xxxl,
+  fontWeight: TYPOGRAPHY.weight.bold,
+  color: COLORS.black,
+}
 ```
 
-### ButtonText:
+### card:
+```typescript
+{
+  backgroundColor: COLORS.gray[50],
+  borderRadius: RADIUS.lg,
+  paddingVertical: SPACING.lg,
+  paddingHorizontal: SPACING.xl,
+}
 ```
-fontSize: lg
-fontWeight: bold
-color: white
+
+### button:
+```typescript
+{
+  backgroundColor: COLORS.primary,
+  borderRadius: 14,
+  paddingVertical: 18,
+  alignItems: 'center',
+}
+```
+
+### buttonText:
+```typescript
+{
+  color: COLORS.white,
+  fontSize: TYPOGRAPHY.size.lg,
+  fontWeight: TYPOGRAPHY.weight.bold,
+}
 ```
 
 ---
@@ -438,8 +686,8 @@ color: white
 ## 📝 ПРАВИЛА АДАПТАЦИИ ДЛЯ ДРУГИХ МОДУЛЕЙ
 
 ### Для каждого модуля меняется:
-1. **Название** (Слова → Грамматика, Аудирование, и т.д.)
-2. **Названия полей карточек**:
+1. **Название** (Слова → Грамматика, Аудирование, Фонетика, и т.д.)
+2. **Названия полей карточек:**
    - words: en, ru, examples
    - grammar: rule, theory, examples
    - listening: audio, transcript
@@ -465,20 +713,44 @@ color: white
 
 1. Копировать папку `app/words/` → `app/NEW_MODULE/`
 2. Заменить все "Слова" → "[NEW_MODULE_NAME]"
-3. Адаптировать типы данных карточек
-4. Изменить типы упражнений в train-settings
-5. Обновить контент в train.tsx (фазы)
-6. Обновить детали карточки в card/[id].tsx
-7. Проверить навигацию (все ссылки `/words/` → `/NEW_MODULE/`)
+3. Заменить все `/words/` → `/NEW_MODULE/` в навигации
+4. Адаптировать типы данных карточек
+5. Изменить типы упражнений в train-settings
+6. Обновить контент в train.tsx (фазы)
+7. Обновить детали карточки в card/[id].tsx
 8. Проверить типизацию (если используется TypeScript)
-9. Запустить npx tsc --noEmit
+9. Запустить `npx tsc --noEmit`
 10. Протестировать все 8 экранов вручную
 
 ---
 
-## 🎯 БУДУЩИЕ ФИЧИ
+## 🎯 АРХИТЕКТУРНЫЕ ДЕТАЛИ
+
+### ResponsiveContainer (_layout.tsx)
+```typescript
+{
+  flex: 1,
+  maxWidth: 480,
+  width: '100%',
+  alignSelf: 'center',
+}
+```
+Все экраны автоматически центрируются на широких экранах.
+
+### SafeAreaView
+Используется на всех экранах для корректного отображения на устройствах с вырезами.
+
+### Навигация
+- Используется `expo-router` с файловой маршрутизацией
+- `router.back()` для возврата
+- `router.push()` для навигации вперёд
+- `router.replace()` для замены текущего экрана
+
+---
+
+## 📚 БУДУЩИЕ ФИЧИ
 
 - **Multi-Module Train**: выбор нескольких модулей → смешанная тренировка
 - **Unified Dashboard**: общий дашборд прогресса по всем модулям
-- **Темная тема**: добавить COLORS.dark в theme.ts
+- **Тёмная тема**: добавить COLORS.dark в theme.ts
 - **Анимации**: React Native Reanimated для плавных переходов

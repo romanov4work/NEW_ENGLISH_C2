@@ -1,17 +1,12 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { COLORS, TYPOGRAPHY, SPACING, RADIUS, COMMON_STYLES } from '../../lib/theme';
-
-const MOCK_AUDIO: Array<{ id: string; title: string; ru: string }> = [
-  { id: '1', title: 'Podcast Episode', ru: 'Эпизод подкаста' },
-  { id: '2', title: 'Interview', ru: 'Интервью' },
-];
+import cardsData from './cards_database/cards_database.json';
 
 export default function Studying() {
   const router = useRouter();
-  const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
@@ -23,23 +18,25 @@ export default function Studying() {
     }
   };
 
+  const allCards = cardsData.flatMap(collection => collection.cards);
+  const studyingCards = allCards.filter(card => card.status === "studying");
+  const filteredAudio = studyingCards.filter(a =>
+    query.trim() === '' ||
+    a.title.toLowerCase().includes(query.toLowerCase()) ||
+    a.ru.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <SafeAreaView style={styles.screen}>
       <View style={COMMON_STYLES.header}>
         <Pressable onPress={handleBack} style={styles.back}>
           <Text style={styles.backText}>◀</Text>
         </Pressable>
-        <Text style={COMMON_STYLES.title}>Изучаемые фразы</Text>
+        <Text style={COMMON_STYLES.title}>Изучаемые звуки</Text>
         <View style={styles.spacer} />
-        <Pressable onPress={() => setSearchOpen(!searchOpen)} style={styles.iconBtn}>
-          <Text style={[styles.iconText, searchOpen && styles.iconActive]}>🔍</Text>
-        </Pressable>
-        <Pressable style={styles.iconBtn}>
-          <Text style={styles.iconText}>＋</Text>
-        </Pressable>
       </View>
 
-      {searchOpen && (
+      
         <View style={styles.searchRow}>
           <TextInput
             style={[
@@ -48,9 +45,9 @@ export default function Studying() {
             ]}
             value={query}
             onChangeText={setQuery}
-            placeholder="Поиск фраз..."
+            placeholder="Поиск изучаемого звука..."
             placeholderTextColor={COLORS.gray[300]}
-            autoFocus
+            
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
@@ -60,12 +57,11 @@ export default function Studying() {
             </Pressable>
           )}
         </View>
-      )}
 
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.sectionLabel}>ФРАЗ НА ИЗУЧЕНИИ: {MOCK_AUDIO.length}</Text>
+        <Text style={styles.sectionLabel}>ФРАЗ НА ИЗУЧЕНИИ: {filteredAudio.length}</Text>
 
-        {MOCK_AUDIO.map((audio: any) => (
+        {filteredAudio.map((audio: any) => (
           <Pressable
             key={audio.id}
             style={styles.audioCard}
@@ -79,7 +75,7 @@ export default function Studying() {
           </Pressable>
         ))}
 
-        {MOCK_AUDIO.length === 0 && (
+        {filteredAudio.length === 0 && (
           <View style={styles.empty}>
             <Text style={styles.emptyTitle}>Пока ничего нет</Text>
             <Text style={styles.emptyText}>
@@ -97,9 +93,6 @@ const styles = StyleSheet.create({
   back: { paddingRight: SPACING.lg },
   backText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.black },
   spacer: { flex: 1 },
-  iconBtn: { paddingLeft: SPACING.sm },
-  iconText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.gray[700] },
-  iconActive: { color: COLORS.primary },
 
   searchRow: {
     flexDirection: 'row',

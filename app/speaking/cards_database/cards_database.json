@@ -1,0 +1,113 @@
+[
+  {
+    "id": "1",
+    "title": "Базовое говорение A1-A2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "s1",
+        "title": "Introduce Yourself",
+        "ru": "Представьтесь",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как правильно представиться?",
+            "options": ["My name is John", "I am name John", "Name my is John", "John is name my"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "title": "Order Food",
+        "ru": "Заказать еду",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как правильно заказать еду?",
+            "options": ["I would like a pizza, please", "I want pizza now", "Give me pizza", "Pizza I want"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Подкасты B1-B2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "s3",
+        "title": "Job Interview",
+        "ru": "Собеседование",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как правильно ответить на вопрос о сильных сторонах?",
+            "options": ["My strength is teamwork", "I am perfect", "I have no weaknesses", "Everyone likes me"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "title": "Express Opinion",
+        "ru": "Выразить мнение",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как вежливо выразить несогласие?",
+            "options": ["I see your point, but...", "You are wrong", "That's stupid", "No way"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Новости и интервью C1-C2",
+    "active": false,
+    "learned": 0,
+    "total": 2,
+    "cards": [
+      {
+        "id": "s5",
+        "title": "Debate Topic",
+        "ru": "Дебаты на тему",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как начать аргумент в дебатах?",
+            "options": ["Firstly, I would argue that...", "I think maybe", "In my opinion", "I don't know but"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "s6",
+        "title": "Present Ideas",
+        "ru": "Презентовать идеи",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Как завершить презентацию?",
+            "options": ["To conclude, I believe...", "That's all", "I'm done", "Bye"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  }
+]

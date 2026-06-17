@@ -1,0 +1,113 @@
+[
+  {
+    "id": "1",
+    "title": "Основы грамматики A1-A2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "g1",
+        "title": "Present Simple",
+        "ru": "Простое настоящее время",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Выберите правильную форму глагола: He ___ to school every day.",
+            "options": ["goes", "go", "going", "went"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "g2",
+        "title": "Past Simple",
+        "ru": "Простое прошедшее время",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Выберите правильную форму глагола: She ___ a book yesterday.",
+            "options": ["read", "reads", "reading", "to read"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Времена глаголов B1-B2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "g3",
+        "title": "Present Continuous",
+        "ru": "Настоящее длительное время",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Выберите правильную форму: They ___ now.",
+            "options": ["are studying", "study", "studied", "will study"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "g4",
+        "title": "Present Perfect",
+        "ru": "Настоящее совершенное время",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Выберите правильную форму: I ___ this movie before.",
+            "options": ["have seen", "see", "saw", "am seeing"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Продвинутая грамматика C1-C2",
+    "active": false,
+    "learned": 0,
+    "total": 2,
+    "cards": [
+      {
+        "id": "g5",
+        "title": "Past Perfect Continuous",
+        "ru": "Прошедшее совершенное длительное",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Выберите правильную форму: He ___ for two hours when I arrived.",
+            "options": ["had been working", "was working", "worked", "has worked"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "g6",
+        "title": "Future Perfect",
+        "ru": "Будущее совершенное время",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Выберите правильную форму: By next year, I ___ English for 5 years.",
+            "options": ["will have studied", "will study", "study", "am studying"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  }
+]

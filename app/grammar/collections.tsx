@@ -1,20 +1,13 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { COLORS, TYPOGRAPHY, SPACING, RADIUS, COMMON_STYLES } from '../../lib/theme';
-
-// Мок-данные коллекций
-const MOCK_COLLECTIONS = [
-  { id: '1', title: 'Основы грамматики A1-A2', active: true, learned: 0, total: 25 },
-  { id: '2', title: 'Времена глаголов B1-B2', active: true, learned: 0, total: 40 },
-  { id: '3', title: 'Продвинутая грамматика C1-C2', active: false, learned: 0, total: 85 },
-];
+import cardsData from './cards_database/cards_database.json';
 
 export default function CollectionsScreen() {
   const router = useRouter();
   const [activeIds, setActiveIds] = useState<string[]>(['1', '2']);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
@@ -32,6 +25,10 @@ export default function CollectionsScreen() {
     }
   };
 
+  const filteredCollections = cardsData.filter(c =>
+    query.trim() === '' || c.title.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <SafeAreaView style={styles.screen}>
       {/* Шапка */}
@@ -39,44 +36,35 @@ export default function CollectionsScreen() {
         <Pressable onPress={handleBack} style={styles.back}>
           <Text style={styles.backText}>◀</Text>
         </Pressable>
-        <Text style={COMMON_STYLES.title}>Коллекции</Text>
+        <Text style={COMMON_STYLES.title}>Коллекции правил</Text>
         <View style={styles.spacer} />
-        <Pressable onPress={() => setSearchOpen(!searchOpen)} style={styles.iconBtn}>
-          <Text style={[styles.iconText, searchOpen && styles.iconActive]}>🔍</Text>
-        </Pressable>
-        <Pressable style={styles.iconBtn}>
-          <Text style={styles.iconText}>＋</Text>
-        </Pressable>
       </View>
 
-      {/* Строка поиска */}
-      {searchOpen && (
-        <View style={styles.searchRow}>
-          <TextInput
-            style={[
-              styles.searchInput,
-              isFocused && styles.searchInputFocused
-            ]}
-            value={query}
-            onChangeText={setQuery}
-            placeholder="Поиск правил..."
-            placeholderTextColor={COLORS.gray[300]}
-            autoFocus
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-          />
-          {query.length > 0 && (
-            <Pressable onPress={() => setQuery('')} style={styles.searchClear}>
-              <Text style={styles.searchClearText}>✕</Text>
-            </Pressable>
-          )}
-        </View>
-      )}
+      {/* Строка поиска - всегда видима */}
+      <View style={styles.searchRow}>
+        <TextInput
+          style={[
+            styles.searchInput,
+            isFocused && styles.searchInputFocused
+          ]}
+          value={query}
+          onChangeText={setQuery}
+          placeholder="Поиск коллекции правил..."
+          placeholderTextColor={COLORS.gray[300]}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+        />
+        {query.length > 0 && (
+          <Pressable onPress={() => setQuery('')} style={styles.searchClear}>
+            <Text style={styles.searchClearText}>✕</Text>
+          </Pressable>
+        )}
+      </View>
 
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.sectionLabel}>ВЫБЕРИТЕ ДЛЯ ТРЕНИРОВКИ</Text>
 
-        {MOCK_COLLECTIONS.map((c) => {
+        {filteredCollections.map((c) => {
           const isActive = activeIds.includes(c.id);
           const pct = c.total > 0 ? Math.round((c.learned / c.total) * 100) : 0;
 
@@ -90,7 +78,7 @@ export default function CollectionsScreen() {
               </Pressable>
 
               {/* Основная область */}
-              <Pressable style={styles.tileMain} onPress={() => {}}>
+              <Pressable style={styles.tileMain} onPress={() => router.push('/grammar/collection/' + c.id)}>
                 <View style={styles.tileText}>
                   <Text style={[styles.tileTitle, isActive && styles.tileTitleActive]} numberOfLines={1}>
                     {c.title}
@@ -122,9 +110,6 @@ const styles = StyleSheet.create({
   back: { paddingRight: SPACING.lg },
   backText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.black },
   spacer: { flex: 1 },
-  iconBtn: { paddingLeft: SPACING.sm },
-  iconText: { fontSize: TYPOGRAPHY.size.xl, color: COLORS.gray[700] },
-  iconActive: { color: COLORS.primary },
 
   searchRow: {
     flexDirection: 'row',

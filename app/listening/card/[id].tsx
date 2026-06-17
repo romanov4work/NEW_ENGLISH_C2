@@ -2,6 +2,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { COLORS, TYPOGRAPHY, SPACING, COMMON_STYLES } from '../../../lib/theme';
+import cardsData from '../cards_database/cards_database.json';
 
 export default function CardDetail() {
   const router = useRouter();

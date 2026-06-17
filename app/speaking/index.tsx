@@ -4,16 +4,23 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { COLORS, TYPOGRAPHY, SPACING, RADIUS, COMMON_STYLES } from '../../lib/theme';
 import { Ionicons } from '@expo/vector-icons';
+import cardsData from './cards_database/cards_database.json';
 
 const TABS = ['Сегодня', 'Неделя', 'Месяц', 'Всего'] as const;
 type Tab = (typeof TABS)[number];
 
-export default function PronunciationIndex() {
+export default function WordsIndex() {
   const router = useRouter();
   const [tab, setTab] = useState<Tab>('Сегодня');
 
-  const vocabulary = 0;
-  const studying = 0;
+  // Собираем все карточки из всех коллекций
+  const allCards = cardsData.flatMap(c => c.cards);
+
+  // Считаем по статусу
+  const vocabulary = allCards.filter(card => card.status === "learned").length;
+  const studying = allCards.filter(card => card.status === "studying").length;
+  const totalCards = allCards.length;
+
   const stats = { learned: 0, added: 0, repeats: 0, minutes: 0 };
 
   const handleBack = () => {
@@ -32,16 +39,17 @@ export default function PronunciationIndex() {
         </Pressable>
         <Text style={COMMON_STYLES.title}>Говорение</Text>
         <View style={styles.spacer} />
-        <Pressable onPress={() => router.push('/speaking/train-settings')} style={styles.gear}>
+        <Pressable onPress={() => router.push('/speaking/settings')} style={styles.gear}>
           <Ionicons name="settings-outline" size={28} color={COLORS.black} />
         </Pressable>
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
+        {/* Счётчики */}
         <View style={styles.counterRow}>
           <Pressable style={styles.counterCard} onPress={() => router.push('/speaking/vocabulary')}>
             <Text style={styles.counterValue}>{vocabulary}</Text>
-            <Text style={styles.counterLabel}>Освоенные диалоги</Text>
+            <Text style={styles.counterLabel}>Выученные диалоги</Text>
           </Pressable>
 
           <Pressable style={styles.counterCard} onPress={() => router.push('/speaking/studying')}>
@@ -50,13 +58,15 @@ export default function PronunciationIndex() {
           </Pressable>
         </View>
 
+        {/* Коллекции */}
         <View style={styles.counterRow}>
           <Pressable style={styles.counterCardFull} onPress={() => router.push('/speaking/collections')}>
-            <Text style={styles.counterValue}>300</Text>
+            <Text style={styles.counterValue}>{totalCards}</Text>
             <Text style={styles.counterLabel}>Коллекции диалогов</Text>
           </Pressable>
         </View>
 
+        {/* Статистика с табами */}
         <View style={COMMON_STYLES.card}>
           <View style={styles.tabRow}>
             {TABS.map((t, index) => (
@@ -84,9 +94,10 @@ export default function PronunciationIndex() {
         </View>
       </ScrollView>
 
+      {/* Кнопка внизу */}
       <View style={styles.bottomBar}>
         <Pressable style={COMMON_STYLES.button} onPress={() => router.push('/speaking/train')}>
-          <Text style={COMMON_STYLES.buttonText}>Тренировать говорение</Text>
+          <Text style={COMMON_STYLES.buttonText}>Тренировать диалоги</Text>
         </Pressable>
       </View>
     </SafeAreaView>

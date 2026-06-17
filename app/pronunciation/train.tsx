@@ -1,22 +1,51 @@
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { COLORS, TYPOGRAPHY, SPACING, COMMON_STYLES } from '../../lib/theme';
+import cardsData from './cards_database/cards_database.json';
 
 type Phase = 'review' | 'select' | 'exercises' | 'results';
 
+// Собираем карточки из активных коллекций
+const allCards = cardsData
+  .filter(collection => collection.active)
+  .flatMap(c => c.cards);
+
+// Review: карточки на повторение (пока пустой, т.к. нет dueDate)
+const REVIEW_CARDS = allCards.filter(card => card.status === "studying");
+
+// Select: новые карточки
+const SELECT_CARDS = allCards.filter(card => card.status === "new");
+
+// Exercises: берем первые 10 новых карточек для упражнений
+const EXERCISES_CARDS = allCards.filter(card => card.status === "new").slice(0, 10);
+
+function getActivePhases(): Phase[] {
+  const phases: Phase[] = [];
+  if (REVIEW_CARDS.length > 0) phases.push("review");
+  if (SELECT_CARDS.length > 0) phases.push("select");
+  if (EXERCISES_CARDS.length > 0) phases.push("exercises");
+  return phases;
+}
+
 export default function Train() {
   const router = useRouter();
-  const [phase, setPhase] = useState<Phase>('review');
+  const activePhases = useMemo(() => getActivePhases(), []);
+  const [phase, setPhase] = useState<Phase>(activePhases[0] || 'results');
 
-  const reviewCurrent = 0;
-  const selectCurrent = 0;
-  const exercisesCurrent = 0;
+  const [reviewCurrent, setReviewCurrent] = useState(0);
+  const [selectCurrent, setSelectCurrent] = useState(0);
+  const [exercisesCurrent, setExercisesCurrent] = useState(0);
 
-  const reviewTotal = 10;
-  const selectTotal = 10;
-  const exercisesTotal = 10;
+  const goToNextPhase = () => {
+    const currentIndex = activePhases.indexOf(phase);
+    if (currentIndex < activePhases.length - 1) {
+      setPhase(activePhases[currentIndex + 1]);
+    } else {
+      setPhase('results');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -24,113 +53,159 @@ export default function Train() {
         <Pressable onPress={() => router.back()} style={styles.back}>
           <Text style={styles.backText}>◀</Text>
         </Pressable>
-        <Text style={COMMON_STYLES.title}>Тренировка</Text>
+        <Text style={COMMON_STYLES.title}>Тренировка звуков</Text>
       </View>
 
-      {phase !== 'results' && (
+      {/* Progress bar */}
+      {phase !== 'results' && activePhases.length > 0 && (
         <View style={styles.progressContainer}>
           <View style={styles.progressBar}>
-            <View style={styles.progressSection}>
-              {Array.from({ length: reviewTotal }).map((_, idx) => (
-                <View
-                  key={`review-${idx}`}
-                  style={[
-                    styles.progressSegment,
-                    phase === 'review' && idx < reviewCurrent && styles.progressSegmentActive,
-                    (phase === 'select' || phase === 'exercises') && styles.progressSegmentActive,
-                  ]}
-                />
-              ))}
-            </View>
-            <View style={styles.progressDivider} />
-            <View style={styles.progressSection}>
-              {Array.from({ length: selectTotal }).map((_, idx) => (
-                <View
-                  key={`select-${idx}`}
-                  style={[
-                    styles.progressSegment,
-                    phase === 'select' && idx < selectCurrent && styles.progressSegmentActive,
-                    phase === 'exercises' && styles.progressSegmentActive,
-                  ]}
-                />
-              ))}
-            </View>
-            <View style={styles.progressDivider} />
-            <View style={styles.progressSection}>
-              {Array.from({ length: exercisesTotal }).map((_, idx) => (
-                <View
-                  key={`exercises-${idx}`}
-                  style={[
-                    styles.progressSegment,
-                    phase === 'exercises' && idx < exercisesCurrent && styles.progressSegmentActive,
-                  ]}
-                />
-              ))}
-            </View>
+            {activePhases.includes('review') && (
+              <>
+                <View style={styles.progressSection}>
+                  {Array.from({ length: REVIEW_CARDS.length }).map((_, idx) => (
+                    <View
+                      key={`review-${idx}`}
+                      style={[
+                        styles.progressSegment,
+                        phase === 'review' && idx < reviewCurrent && styles.progressSegmentActive,
+                        (phase === 'select' || phase === 'exercises') && styles.progressSegmentActive,
+                      ]}
+                    />
+                  ))}
+                </View>
+                {activePhases.length > 1 && <View style={styles.progressDivider} />}
+              </>
+            )}
+            {activePhases.includes('select') && (
+              <>
+                <View style={styles.progressSection}>
+                  {Array.from({ length: SELECT_CARDS.length }).map((_, idx) => (
+                    <View
+                      key={`select-${idx}`}
+                      style={[
+                        styles.progressSegment,
+                        phase === 'select' && idx < selectCurrent && styles.progressSegmentActive,
+                        phase === 'exercises' && styles.progressSegmentActive,
+                      ]}
+                    />
+                  ))}
+                </View>
+                {activePhases.indexOf('select') < activePhases.length - 1 && <View style={styles.progressDivider} />}
+              </>
+            )}
+            {activePhases.includes('exercises') && (
+              <View style={styles.progressSection}>
+                {Array.from({ length: EXERCISES_CARDS.length }).map((_, idx) => (
+                  <View
+                    key={`exercises-${idx}`}
+                    style={[
+                      styles.progressSegment,
+                      phase === 'exercises' && idx < exercisesCurrent && styles.progressSegmentActive,
+                    ]}
+                  />
+                ))}
+              </View>
+            )}
           </View>
           <View style={styles.progressLabels}>
-            <View style={styles.progressLabelContainer}>
-              <Text style={styles.progressLabel}>Повторение</Text>
-            </View>
-            <View style={styles.progressLabelDivider} />
-            <View style={styles.progressLabelContainer}>
-              <Text style={styles.progressLabel}>Выбор</Text>
-            </View>
-            <View style={styles.progressLabelDivider} />
-            <View style={styles.progressLabelContainer}>
-              <Text style={styles.progressLabel}>Упражнения</Text>
-            </View>
+            {activePhases.includes('review') && (
+              <>
+                <View style={styles.progressLabelContainer}>
+                  <Text style={styles.progressLabel}>Повторение</Text>
+                </View>
+                {activePhases.length > 1 && <View style={styles.progressLabelDivider} />}
+              </>
+            )}
+            {activePhases.includes('select') && (
+              <>
+                <View style={styles.progressLabelContainer}>
+                  <Text style={styles.progressLabel}>Выбор</Text>
+                </View>
+                {activePhases.indexOf('select') < activePhases.length - 1 && <View style={styles.progressLabelDivider} />}
+              </>
+            )}
+            {activePhases.includes('exercises') && (
+              <View style={styles.progressLabelContainer}>
+                <Text style={styles.progressLabel}>Упражнения</Text>
+              </View>
+            )}
           </View>
         </View>
       )}
 
       <View style={styles.content}>
-        {phase === 'review' && <ReviewPhase onNext={() => setPhase('select')} />}
-        {phase === 'select' && <SelectPhase onNext={() => setPhase('exercises')} />}
-        {phase === 'exercises' && <ExercisesPhase onNext={() => setPhase('results')} />}
+        {phase === 'review' && (
+          <ReviewPhase
+            onNext={goToNextPhase}
+            current={reviewCurrent}
+            setCurrent={setReviewCurrent}
+            total={REVIEW_CARDS.length}
+          />
+        )}
+        {phase === 'select' && (
+          <SelectPhase
+            onNext={goToNextPhase}
+            current={selectCurrent}
+            setCurrent={setSelectCurrent}
+            total={SELECT_CARDS.length}
+          />
+        )}
+        {phase === 'exercises' && (
+          <ExercisesPhase
+            onNext={goToNextPhase}
+            current={exercisesCurrent}
+            setCurrent={setExercisesCurrent}
+            total={EXERCISES_CARDS.length}
+          />
+        )}
         {phase === 'results' && <ResultsPhase onFinish={() => router.back()} />}
       </View>
     </SafeAreaView>
   );
 }
 
-function ReviewPhase({ onNext }: { onNext: () => void }) {
+function ReviewPhase({
+  onNext,
+  current,
+  setCurrent,
+  total,
+}: {
+  onNext: () => void;
+  current: number;
+  setCurrent: (n: number) => void;
+  total: number;
+}) {
+  const currentCard = REVIEW_CARDS[current];
+
+  const handleAnswer = (quality: 'good' | 'medium' | 'bad') => {
+    if (current < total - 1) {
+      setCurrent(current + 1);
+    } else {
+      onNext();
+    }
+  };
+
   return (
     <>
       <View style={styles.phaseContent}>
         <Text style={styles.phaseTitle}>Повторение</Text>
-        <Text style={styles.phaseText}>Повторите аудио с истекшим интервалом</Text>
+        <Text style={styles.phaseText}>Карточка {current + 1} из {total}</Text>
         <View style={styles.card}>
-          <Text style={styles.cardInfo}>Нет аудио для повторения</Text>
-        </View>
-      </View>
-      <View style={styles.bottomBar}>
-        <Pressable style={COMMON_STYLES.button} onPress={onNext}>
-          <Text style={COMMON_STYLES.buttonText}>Далее</Text>
-        </Pressable>
-      </View>
-    </>
-  );
-}
-
-function SelectPhase({ onNext }: { onNext: () => void }) {
-  return (
-    <>
-      <View style={styles.phaseContent}>
-        <Text style={styles.phaseTitle}>Выбор нового аудио</Text>
-        <Text style={styles.phaseText}>Отметьте аудио, которые хотите изучить</Text>
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Practice Phrase</Text>
-          <Text style={styles.cardTranslation}>Практическая фраза</Text>
+          <Text style={styles.cardWord}>{currentCard.title}</Text>
+          <Text style={styles.cardTranslation}>{currentCard.ru}</Text>
         </View>
       </View>
       <View style={styles.bottomBar}>
         <View style={styles.buttonRow}>
-          <Pressable style={styles.buttonHalf} onPress={onNext}>
-            <Text style={styles.buttonHalfText}>Знаю</Text>
+          <Pressable style={[styles.buttonThird, styles.buttonLightGray]} onPress={() => handleAnswer('bad')}>
+            <Text style={styles.buttonThirdText}>Не помню</Text>
           </Pressable>
-          <Pressable style={[styles.buttonHalf, styles.buttonPrimary]} onPress={onNext}>
-            <Text style={[styles.buttonHalfText, styles.buttonPrimaryText]}>Тренировать</Text>
+          <Pressable style={[styles.buttonThird, styles.buttonDarkGray]} onPress={() => handleAnswer('medium')}>
+            <Text style={styles.buttonThirdText}>Плохо помню</Text>
+          </Pressable>
+          <Pressable style={[styles.buttonThird, styles.buttonBlack]} onPress={() => handleAnswer('good')}>
+            <Text style={styles.buttonThirdText}>Помню</Text>
           </Pressable>
         </View>
       </View>
@@ -138,21 +213,142 @@ function SelectPhase({ onNext }: { onNext: () => void }) {
   );
 }
 
-function ExercisesPhase({ onNext }: { onNext: () => void }) {
+function SelectPhase({
+  onNext,
+  current,
+  setCurrent,
+  total,
+}: {
+  onNext: () => void;
+  current: number;
+  setCurrent: (n: number) => void;
+  total: number;
+}) {
+  const currentCard = SELECT_CARDS[current];
+
+  const handleAnswer = (knows: boolean) => {
+    if (current < total - 1) {
+      setCurrent(current + 1);
+    } else {
+      onNext();
+    }
+  };
+
+  return (
+    <>
+      <View style={styles.phaseContent}>
+        <Text style={styles.phaseTitle}>Выбор новых звуков</Text>
+        <Text style={styles.phaseText}>Карточка {current + 1} из {total}</Text>
+        <View style={styles.card}>
+          <Text style={styles.cardWord}>{currentCard.title}</Text>
+          <Text style={styles.cardTranslation}>{currentCard.ru}</Text>
+        </View>
+      </View>
+      <View style={styles.bottomBar}>
+        <View style={styles.buttonRow}>
+          <Pressable style={[styles.buttonHalf, styles.buttonLightGray]} onPress={() => handleAnswer(false)}>
+            <Text style={styles.buttonHalfText}>Не знаю</Text>
+          </Pressable>
+          <Pressable style={[styles.buttonHalf, styles.buttonBlack]} onPress={() => handleAnswer(true)}>
+            <Text style={[styles.buttonHalfText, styles.buttonBlackText]}>Знаю</Text>
+          </Pressable>
+        </View>
+      </View>
+    </>
+  );
+}
+
+function ExercisesPhase({
+  onNext,
+  current,
+  setCurrent,
+  total,
+}: {
+  onNext: () => void;
+  current: number;
+  setCurrent: (n: number) => void;
+  total: number;
+}) {
+  const currentCard = EXERCISES_CARDS[current];
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [showResult, setShowResult] = useState(false);
+
+  const exercise = currentCard.exercises?.[0];
+
+  // Сбрасываем состояние при смене карточки
+  useEffect(() => {
+    setSelectedOption(null);
+    setShowResult(false);
+  }, [current]);
+
+  const handleOptionPress = (index: number) => {
+    setSelectedOption(index);
+    setShowResult(true);
+  };
+
+  const handleNext = () => {
+    setSelectedOption(null);
+    setShowResult(false);
+    if (current < total - 1) {
+      setCurrent(current + 1);
+    } else {
+      onNext();
+    }
+  };
+
+  if (!exercise) {
+    return (
+      <>
+        <View style={styles.phaseContent}>
+          <Text style={styles.phaseTitle}>Упражнения</Text>
+          <Text style={styles.phaseText}>Карточка {current + 1} из {total}</Text>
+          <View style={styles.card}>
+            <Text style={styles.cardWord}>{currentCard.title}</Text>
+            <Text style={styles.cardTranslation}>{currentCard.ru}</Text>
+          </View>
+        </View>
+        <View style={styles.bottomBar}>
+          <Pressable style={COMMON_STYLES.button} onPress={handleNext}>
+            <Text style={COMMON_STYLES.buttonText}>Далее</Text>
+          </Pressable>
+        </View>
+      </>
+    );
+  }
+
+  const isCorrect = selectedOption === exercise.correctIndex;
+
   return (
     <>
       <View style={styles.phaseContent}>
         <Text style={styles.phaseTitle}>Упражнения</Text>
-        <Text style={styles.phaseText}>Фраза 1 из 5</Text>
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>🎧 Прослушайте</Text>
-          <Text style={styles.cardTranslation}>Practice Phrase</Text>
-        </View>
+        <Text style={styles.phaseText}>Карточка {current + 1} из {total}</Text>
+        <Text style={styles.exerciseQuestion}>{exercise.question}</Text>
       </View>
       <View style={styles.bottomBar}>
-        <Pressable style={COMMON_STYLES.button} onPress={onNext}>
-          <Text style={COMMON_STYLES.buttonText}>Далее</Text>
-        </Pressable>
+        <View style={styles.exerciseOptions}>
+          {exercise.options.map((option, index) => (
+            <Pressable
+              key={index}
+              style={[
+                styles.exerciseOption,
+                showResult && index === exercise.correctIndex && styles.exerciseOptionCorrect,
+                showResult && selectedOption === index && index !== exercise.correctIndex && styles.exerciseOptionWrong,
+              ]}
+              onPress={() => !showResult && handleOptionPress(index)}
+              disabled={showResult}
+            >
+              <Text style={styles.exerciseOptionText}>{option}</Text>
+            </Pressable>
+          ))}
+        </View>
+        {showResult && (
+          <Pressable style={COMMON_STYLES.button} onPress={handleNext}>
+            <Text style={COMMON_STYLES.buttonText}>
+              {isCorrect ? 'Правильно! Далее' : 'Далее'}
+            </Text>
+          </Pressable>
+        )}
       </View>
     </>
   );
@@ -164,7 +360,7 @@ function ResultsPhase({ onFinish }: { onFinish: () => void }) {
       <View style={styles.phaseContent}>
         <Text style={styles.phaseTitle}>Результаты</Text>
         <View style={styles.statsCard}>
-          <StatRow label="Новых фраз изучено" value="0" />
+          <StatRow label="Новых слов изучено" value="0" />
           <StatRow label="Повторений сделано" value="0" />
           <StatRow label="Время" value="0 мин" />
         </View>
@@ -261,7 +457,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 48,
   },
-  cardTitle: {
+  cardWord: {
     fontSize: 32,
     fontWeight: TYPOGRAPHY.weight.bold,
     color: COLORS.black,
@@ -300,20 +496,72 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   buttonRow: { flexDirection: 'row', gap: SPACING.sm },
+  buttonThird: {
+    flex: 1,
+    paddingVertical: SPACING.lg,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  buttonThirdText: {
+    fontSize: TYPOGRAPHY.size.md,
+    fontWeight: TYPOGRAPHY.weight.semibold,
+    color: COLORS.white,
+  },
+  buttonLightGray: {
+    backgroundColor: COLORS.gray[500],
+  },
+  buttonDarkGray: {
+    backgroundColor: COLORS.gray[700],
+  },
+  buttonBlack: {
+    backgroundColor: COLORS.black,
+  },
   buttonHalf: {
     flex: 1,
-    backgroundColor: COLORS.white,
-    borderWidth: 2,
-    borderColor: COLORS.primary,
-    borderRadius: 14,
-    paddingVertical: 18,
+    paddingVertical: SPACING.lg,
+    borderRadius: 12,
     alignItems: 'center',
   },
   buttonHalfText: {
-    fontSize: TYPOGRAPHY.size.lg,
-    fontWeight: TYPOGRAPHY.weight.bold,
-    color: COLORS.primary,
+    fontSize: TYPOGRAPHY.size.md,
+    fontWeight: TYPOGRAPHY.weight.semibold,
+    color: COLORS.white,
   },
-  buttonPrimary: { backgroundColor: COLORS.primary },
-  buttonPrimaryText: { color: COLORS.white },
+  buttonBlackText: {
+    color: COLORS.white,
+  },
+
+  // Exercise styles
+  exerciseQuestion: {
+    fontSize: TYPOGRAPHY.size.xl,
+    fontWeight: TYPOGRAPHY.weight.bold,
+    color: COLORS.black,
+    textAlign: "center",
+    marginBottom: SPACING.xl,
+  },
+  exerciseOptions: {
+    gap: SPACING.sm,
+    marginBottom: SPACING.md,
+  },
+  exerciseOption: {
+    backgroundColor: COLORS.gray[50],
+    paddingVertical: SPACING.lg,
+    paddingHorizontal: SPACING.xl,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: COLORS.gray[200],
+  },
+  exerciseOptionCorrect: {
+    backgroundColor: "#D4EDDA",
+    borderColor: "#28A745",
+  },
+  exerciseOptionWrong: {
+    backgroundColor: "#F8D7DA",
+    borderColor: "#DC3545",
+  },
+  exerciseOptionText: {
+    fontSize: TYPOGRAPHY.size.md,
+    color: COLORS.black,
+    textAlign: "center",
+  },
 });

@@ -1,0 +1,113 @@
+[
+  {
+    "id": "1",
+    "title": "Базовое чтение A1-A2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "r1",
+        "title": "Short Story",
+        "ru": "Короткий рассказ",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "What is the main idea of the story?",
+            "options": ["A boy finds a dog", "A girl loses her way", "A man buys a car", "A woman cooks dinner"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "r2",
+        "title": "Simple Article",
+        "ru": "Простая статья",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "According to the article, what is the best time to study?",
+            "options": ["In the morning", "At night", "In the afternoon", "Anytime"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Подкасты B1-B2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "r3",
+        "title": "Magazine Article",
+        "ru": "Статья из журнала",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "What does the author suggest about technology?",
+            "options": ["It improves our lives", "It makes us lazy", "It is dangerous", "It is useless"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "r4",
+        "title": "Blog Post",
+        "ru": "Пост в блоге",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Why did the blogger visit Paris?",
+            "options": ["For vacation", "For work", "For study", "For family"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Новости и интервью C1-C2",
+    "active": false,
+    "learned": 0,
+    "total": 2,
+    "cards": [
+      {
+        "id": "r5",
+        "title": "Academic Paper",
+        "ru": "Научная статья",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "What is the researcher's conclusion?",
+            "options": ["Climate change is accelerating", "Climate change is slowing", "Climate change doesn't exist", "Climate change is natural"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "r6",
+        "title": "Literary Text",
+        "ru": "Литературный текст",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "What literary device is used in this passage?",
+            "options": ["Metaphor", "Simile", "Irony", "Alliteration"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  }
+]

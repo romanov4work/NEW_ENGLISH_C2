@@ -1,0 +1,113 @@
+[
+  {
+    "id": "1",
+    "title": "Базовое аудирование A1-A2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "l1",
+        "title": "Daily Conversation",
+        "ru": "Ежедневный разговор",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "What did the speakers discuss?",
+            "options": ["The weather", "Their work", "A movie", "Food"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "l2",
+        "title": "Simple Dialog",
+        "ru": "Простой диалог",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Where are the speakers?",
+            "options": ["At a cafe", "At home", "At school", "At work"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Подкасты B1-B2",
+    "active": true,
+    "learned": 1,
+    "total": 2,
+    "cards": [
+      {
+        "id": "l3",
+        "title": "Tech News",
+        "ru": "Технологические новости",
+        "status": "learned",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "What technology was mentioned?",
+            "options": ["Artificial Intelligence", "Blockchain", "5G", "Cloud Computing"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "l4",
+        "title": "Travel Stories",
+        "ru": "Истории о путешествиях",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "Which country did the traveler visit?",
+            "options": ["Japan", "Italy", "France", "Spain"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Новости и интервью C1-C2",
+    "active": false,
+    "learned": 0,
+    "total": 2,
+    "cards": [
+      {
+        "id": "l5",
+        "title": "BBC Interview",
+        "ru": "Интервью BBC",
+        "status": "new",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "What is the interviewee's profession?",
+            "options": ["Scientist", "Politician", "Artist", "Athlete"],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "id": "l6",
+        "title": "Political Debate",
+        "ru": "Политические дебаты",
+        "status": "studying",
+        "exercises": [
+          {
+            "type": "multiple_choice",
+            "question": "What is the main topic of debate?",
+            "options": ["Climate policy", "Healthcare", "Education", "Economy"],
+            "correctIndex": 0
+          }
+        ]
+      }
+    ]
+  }
+]

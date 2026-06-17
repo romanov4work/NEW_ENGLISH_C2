@@ -1,0 +1,389 @@
+[
+  {
+    "id": "1",
+    "title": "Базовые слова A1-A2",
+    "active": true,
+    "learned": 1,
+    "total": 5,
+    "cards": [
+      {
+        "id": "w1",
+        "en": "hello",
+        "ru": ["привет", "здравствуйте"],
+        "status": "learned",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "hello",
+            "options": ["привет", "спасибо", "извините", "пожалуйста"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "hello",
+            "translation": "привет",
+            "letters": ["h", "e", "l", "l", "o", "a", "b"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "hello",
+            "translation": "привет"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "hello",
+            "translation": "привет"
+          }
+        }
+      },
+      {
+        "id": "w2",
+        "en": "goodbye",
+        "ru": ["до свидания", "пока"],
+        "status": "studying",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "goodbye",
+            "options": ["до свидания", "привет", "здравствуйте", "добрый день"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "goodbye",
+            "translation": "до свидания",
+            "letters": ["g", "o", "o", "d", "b", "y", "e", "a", "h"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "goodbye",
+            "translation": "до свидания"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "goodbye",
+            "translation": "до свидания"
+          }
+        }
+      },
+      {
+        "id": "w1a",
+        "en": "thank you",
+        "ru": ["спасибо"],
+        "status": "studying",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "thank you",
+            "options": ["спасибо", "привет", "пока", "извините"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "thank you",
+            "translation": "спасибо",
+            "letters": ["t", "h", "a", "n", "k", " ", "y", "o", "u", "s"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "thank you",
+            "translation": "спасибо"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "thank you",
+            "translation": "спасибо"
+          }
+        }
+      },
+      {
+        "id": "w1b",
+        "en": "please",
+        "ru": ["пожалуйста"],
+        "status": "studying",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "please",
+            "options": ["пожалуйста", "спасибо", "извините", "привет"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "please",
+            "translation": "пожалуйста",
+            "letters": ["p", "l", "e", "a", "s", "e", "b", "c"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "please",
+            "translation": "пожалуйста"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "please",
+            "translation": "пожалуйста"
+          }
+        }
+      },
+      {
+        "id": "w1c",
+        "en": "sorry",
+        "ru": ["извините", "простите"],
+        "status": "studying",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "sorry",
+            "options": ["извините", "спасибо", "пожалуйста", "привет"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "sorry",
+            "translation": "извините",
+            "letters": ["s", "o", "r", "r", "y", "a", "b"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "sorry",
+            "translation": "извините"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "sorry",
+            "translation": "извините"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Общая лексика B1-B2",
+    "active": true,
+    "learned": 1,
+    "total": 5,
+    "cards": [
+      {
+        "id": "w3",
+        "en": "beautiful",
+        "ru": ["красивый", "прекрасный"],
+        "status": "learned",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "beautiful",
+            "options": ["красивый", "уродливый", "большой", "маленький"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "beautiful",
+            "translation": "красивый",
+            "letters": ["b", "e", "a", "u", "t", "i", "f", "u", "l", "x", "y"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "beautiful",
+            "translation": "красивый"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "beautiful",
+            "translation": "красивый"
+          }
+        }
+      },
+      {
+        "id": "w4",
+        "en": "important",
+        "ru": ["важный", "значимый"],
+        "status": "studying",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "important",
+            "options": ["важный", "неважный", "интересный", "скучный"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "important",
+            "translation": "важный",
+            "letters": ["i", "m", "p", "o", "r", "t", "a", "n", "t", "s", "e"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "important",
+            "translation": "важный"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "important",
+            "translation": "важный"
+          }
+        }
+      },
+      {
+        "id": "w4a",
+        "en": "difficult",
+        "ru": ["трудный", "сложный"],
+        "status": "new",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "difficult",
+            "options": ["трудный", "легкий", "простой", "понятный"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "difficult",
+            "translation": "трудный",
+            "letters": ["d", "i", "f", "f", "i", "c", "u", "l", "t", "a", "b"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "difficult",
+            "translation": "трудный"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "difficult",
+            "translation": "трудный"
+          }
+        }
+      },
+      {
+        "id": "w4b",
+        "en": "easy",
+        "ru": ["легкий", "простой"],
+        "status": "new",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "easy",
+            "options": ["легкий", "трудный", "сложный", "тяжелый"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "easy",
+            "translation": "легкий",
+            "letters": ["e", "a", "s", "y", "b", "c"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "easy",
+            "translation": "легкий"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "easy",
+            "translation": "легкий"
+          }
+        }
+      },
+      {
+        "id": "w4c",
+        "en": "interesting",
+        "ru": ["интересный"],
+        "status": "new",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "interesting",
+            "options": ["интересный", "скучный", "неинтересный", "странный"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "interesting",
+            "translation": "интересный",
+            "letters": ["i", "n", "t", "e", "r", "e", "s", "t", "i", "n", "g", "a", "b"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "interesting",
+            "translation": "интересный"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "interesting",
+            "translation": "интересный"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Продвинутая лексика C1-C2",
+    "active": false,
+    "learned": 0,
+    "total": 2,
+    "cards": [
+      {
+        "id": "w5",
+        "en": "magnificent",
+        "ru": ["великолепный", "величественный"],
+        "status": "new",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "magnificent",
+            "options": ["великолепный", "обычный", "плохой", "средний"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "magnificent",
+            "translation": "великолепный",
+            "letters": ["m", "a", "g", "n", "i", "f", "i", "c", "e", "n", "t", "o", "s"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "magnificent",
+            "translation": "великолепный"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "magnificent",
+            "translation": "великолепный"
+          }
+        }
+      },
+      {
+        "id": "w6",
+        "en": "extraordinary",
+        "ru": ["необычайный", "экстраординарный"],
+        "status": "studying",
+        "exercises": {
+          "choose": {
+            "type": "choose",
+            "question": "extraordinary",
+            "options": ["необычайный", "обычный", "простой", "типичный"],
+            "correctIndex": 0
+          },
+          "assemble": {
+            "type": "assemble",
+            "targetWord": "extraordinary",
+            "translation": "необычайный",
+            "letters": ["e", "x", "t", "r", "a", "o", "r", "d", "i", "n", "a", "r", "y", "s", "b"]
+          },
+          "type": {
+            "type": "type",
+            "targetWord": "extraordinary",
+            "translation": "необычайный"
+          },
+          "sentence": {
+            "type": "sentence",
+            "targetWord": "extraordinary",
+            "translation": "необычайный"
+          }
+        }
+      }
+    ]
+  }
+]
