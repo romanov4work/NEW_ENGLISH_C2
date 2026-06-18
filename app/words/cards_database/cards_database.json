@@ -3,157 +3,150 @@
     "id": "1",
     "title": "Базовые слова A1-A2",
     "active": true,
-    "learned": 1,
-    "total": 5,
+    "learned": 0,
+    "total": 13,
     "cards": [
       {
-        "id": "w1",
-        "en": "hello",
-        "ru": ["привет", "здравствуйте"],
-        "status": "learned",
+        "id": "w1", "en": "hello", "ru": ["привет", "здравствуйте"], "status": "new",
+        "pos": "межд.", "ipa": "/heˈloʊ/",
+        "examples": [{ "en": "Hello, how are you today?", "ru": "Привет, как ты сегодня?" }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "hello",
-            "options": ["привет", "спасибо", "извините", "пожалуйста"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "hello",
-            "translation": "привет",
-            "letters": ["h", "e", "l", "l", "o", "a", "b"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "hello",
-            "translation": "привет"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "hello",
-            "translation": "привет"
-          }
+          "choose": { "type": "choose", "question": "hello", "options": ["привет", "спасибо", "извините", "пожалуйста"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "hello", "translation": "привет", "letters": ["h", "e", "l", "l", "o", "a", "b"] },
+          "type": { "type": "type", "targetWord": "hello", "translation": "привет" },
+          "sentence": { "type": "sentence", "targetWord": "hello", "translation": "привет" }
         }
       },
       {
-        "id": "w2",
-        "en": "goodbye",
-        "ru": ["до свидания", "пока"],
-        "status": "studying",
+        "id": "w2", "en": "goodbye", "ru": ["до свидания", "пока"], "status": "new",
+        "pos": "межд.", "ipa": "/ɡʊdˈbaɪ/",
+        "examples": [{ "en": "Goodbye, see you tomorrow!", "ru": "До свидания, увидимся завтра!" }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "goodbye",
-            "options": ["до свидания", "привет", "здравствуйте", "добрый день"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "goodbye",
-            "translation": "до свидания",
-            "letters": ["g", "o", "o", "d", "b", "y", "e", "a", "h"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "goodbye",
-            "translation": "до свидания"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "goodbye",
-            "translation": "до свидания"
-          }
+          "choose": { "type": "choose", "question": "goodbye", "options": ["до свидания", "привет", "здравствуйте", "добрый день"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "goodbye", "translation": "до свидания", "letters": ["g", "o", "o", "d", "b", "y", "e", "a", "h"] },
+          "type": { "type": "type", "targetWord": "goodbye", "translation": "до свидания" },
+          "sentence": { "type": "sentence", "targetWord": "goodbye", "translation": "до свидания" }
         }
       },
       {
-        "id": "w1a",
-        "en": "thank you",
-        "ru": ["спасибо"],
-        "status": "studying",
+        "id": "w1a", "en": "thank you", "ru": ["спасибо"], "status": "new",
+        "pos": "фраза", "ipa": "/ˈθæŋk juː/",
+        "examples": [{ "en": "Thank you for your help.", "ru": "Спасибо за помощь." }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "thank you",
-            "options": ["спасибо", "привет", "пока", "извините"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "thank you",
-            "translation": "спасибо",
-            "letters": ["t", "h", "a", "n", "k", " ", "y", "o", "u", "s"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "thank you",
-            "translation": "спасибо"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "thank you",
-            "translation": "спасибо"
-          }
+          "choose": { "type": "choose", "question": "thank you", "options": ["спасибо", "привет", "пока", "извините"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "thank you", "translation": "спасибо", "letters": ["t", "h", "a", "n", "k", " ", "y", "o", "u", "s"] },
+          "type": { "type": "type", "targetWord": "thank you", "translation": "спасибо" },
+          "sentence": { "type": "sentence", "targetWord": "thank you", "translation": "спасибо" }
         }
       },
       {
-        "id": "w1b",
-        "en": "please",
-        "ru": ["пожалуйста"],
-        "status": "studying",
+        "id": "w1b", "en": "please", "ru": ["пожалуйста"], "status": "new",
+        "pos": "нареч.", "ipa": "/pliːz/",
+        "examples": [{ "en": "Please open the window.", "ru": "Пожалуйста, открой окно." }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "please",
-            "options": ["пожалуйста", "спасибо", "извините", "привет"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "please",
-            "translation": "пожалуйста",
-            "letters": ["p", "l", "e", "a", "s", "e", "b", "c"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "please",
-            "translation": "пожалуйста"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "please",
-            "translation": "пожалуйста"
-          }
+          "choose": { "type": "choose", "question": "please", "options": ["пожалуйста", "спасибо", "извините", "привет"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "please", "translation": "пожалуйста", "letters": ["p", "l", "e", "a", "s", "e", "b", "c"] },
+          "type": { "type": "type", "targetWord": "please", "translation": "пожалуйста" },
+          "sentence": { "type": "sentence", "targetWord": "please", "translation": "пожалуйста" }
         }
       },
       {
-        "id": "w1c",
-        "en": "sorry",
-        "ru": ["извините", "простите"],
-        "status": "studying",
+        "id": "w1c", "en": "sorry", "ru": ["извините", "простите"], "status": "new",
+        "pos": "прил.", "ipa": "/ˈsɔːri/",
+        "examples": [{ "en": "I'm sorry for being late.", "ru": "Извините за опоздание." }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "sorry",
-            "options": ["извините", "спасибо", "пожалуйста", "привет"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "sorry",
-            "translation": "извините",
-            "letters": ["s", "o", "r", "r", "y", "a", "b"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "sorry",
-            "translation": "извините"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "sorry",
-            "translation": "извините"
-          }
+          "choose": { "type": "choose", "question": "sorry", "options": ["извините", "спасибо", "пожалуйста", "привет"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "sorry", "translation": "извините", "letters": ["s", "o", "r", "r", "y", "a", "b"] },
+          "type": { "type": "type", "targetWord": "sorry", "translation": "извините" },
+          "sentence": { "type": "sentence", "targetWord": "sorry", "translation": "извините" }
+        }
+      },
+      {
+        "id": "w1d", "en": "yes", "ru": ["да"], "status": "new",
+        "pos": "частица", "ipa": "/jes/",
+        "examples": [{ "en": "Yes, I agree with you.", "ru": "Да, я с тобой согласен." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "yes", "options": ["да", "нет", "может быть", "спасибо"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "yes", "translation": "да", "letters": ["y", "e", "s", "a", "t"] },
+          "type": { "type": "type", "targetWord": "yes", "translation": "да" },
+          "sentence": { "type": "sentence", "targetWord": "yes", "translation": "да" }
+        }
+      },
+      {
+        "id": "w1e", "en": "no", "ru": ["нет"], "status": "new",
+        "pos": "частица", "ipa": "/noʊ/",
+        "examples": [{ "en": "No, I don't want to go.", "ru": "Нет, я не хочу идти." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "no", "options": ["нет", "да", "хорошо", "плохо"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "no", "translation": "нет", "letters": ["n", "o", "x", "y"] },
+          "type": { "type": "type", "targetWord": "no", "translation": "нет" },
+          "sentence": { "type": "sentence", "targetWord": "no", "translation": "нет" }
+        }
+      },
+      {
+        "id": "w1f", "en": "water", "ru": ["вода"], "status": "new",
+        "pos": "сущ.", "ipa": "/ˈwɔːtər/",
+        "examples": [{ "en": "I drink water every day.", "ru": "Я пью воду каждый день." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "water", "options": ["вода", "еда", "огонь", "воздух"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "water", "translation": "вода", "letters": ["w", "a", "t", "e", "r", "b", "o"] },
+          "type": { "type": "type", "targetWord": "water", "translation": "вода" },
+          "sentence": { "type": "sentence", "targetWord": "water", "translation": "вода" }
+        }
+      },
+      {
+        "id": "w1g", "en": "food", "ru": ["еда", "пища"], "status": "new",
+        "pos": "сущ.", "ipa": "/fuːd/",
+        "examples": [{ "en": "This food is delicious.", "ru": "Эта еда очень вкусная." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "food", "options": ["еда", "вода", "напиток", "стол"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "food", "translation": "еда", "letters": ["f", "o", "o", "d", "a", "t"] },
+          "type": { "type": "type", "targetWord": "food", "translation": "еда" },
+          "sentence": { "type": "sentence", "targetWord": "food", "translation": "еда" }
+        }
+      },
+      {
+        "id": "w1h", "en": "friend", "ru": ["друг", "подруга"], "status": "new",
+        "pos": "сущ.", "ipa": "/frend/",
+        "examples": [{ "en": "She is my best friend.", "ru": "Она моя лучшая подруга." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "friend", "options": ["друг", "враг", "сосед", "коллега"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "friend", "translation": "друг", "letters": ["f", "r", "i", "e", "n", "d", "a", "o"] },
+          "type": { "type": "type", "targetWord": "friend", "translation": "друг" },
+          "sentence": { "type": "sentence", "targetWord": "friend", "translation": "друг" }
+        }
+      },
+      {
+        "id": "w1i", "en": "house", "ru": ["дом"], "status": "new",
+        "pos": "сущ.", "ipa": "/haʊs/",
+        "examples": [{ "en": "They live in a big house.", "ru": "Они живут в большом доме." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "house", "options": ["дом", "улица", "город", "комната"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "house", "translation": "дом", "letters": ["h", "o", "u", "s", "e", "t", "a"] },
+          "type": { "type": "type", "targetWord": "house", "translation": "дом" },
+          "sentence": { "type": "sentence", "targetWord": "house", "translation": "дом" }
+        }
+      },
+      {
+        "id": "w1j", "en": "time", "ru": ["время"], "status": "new",
+        "pos": "сущ.", "ipa": "/taɪm/",
+        "examples": [{ "en": "I don't have much time.", "ru": "У меня мало времени." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "time", "options": ["время", "час", "день", "минута"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "time", "translation": "время", "letters": ["t", "i", "m", "e", "a", "o"] },
+          "type": { "type": "type", "targetWord": "time", "translation": "время" },
+          "sentence": { "type": "sentence", "targetWord": "time", "translation": "время" }
+        }
+      },
+      {
+        "id": "w1k", "en": "good", "ru": ["хороший", "добрый"], "status": "new",
+        "pos": "прил.", "ipa": "/ɡʊd/",
+        "examples": [{ "en": "This is a good idea.", "ru": "Это хорошая идея." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "good", "options": ["хороший", "плохой", "злой", "грустный"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "good", "translation": "хороший", "letters": ["g", "o", "o", "d", "a", "t"] },
+          "type": { "type": "type", "targetWord": "good", "translation": "хороший" },
+          "sentence": { "type": "sentence", "targetWord": "good", "translation": "хороший" }
         }
       }
     ]
@@ -162,157 +155,150 @@
     "id": "2",
     "title": "Общая лексика B1-B2",
     "active": true,
-    "learned": 1,
-    "total": 5,
+    "learned": 0,
+    "total": 13,
     "cards": [
       {
-        "id": "w3",
-        "en": "beautiful",
-        "ru": ["красивый", "прекрасный"],
-        "status": "learned",
+        "id": "w3", "en": "beautiful", "ru": ["красивый", "прекрасный"], "status": "new",
+        "pos": "прил.", "ipa": "/ˈbjuːtɪfl/",
+        "examples": [{ "en": "What a beautiful sunset!", "ru": "Какой красивый закат!" }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "beautiful",
-            "options": ["красивый", "уродливый", "большой", "маленький"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "beautiful",
-            "translation": "красивый",
-            "letters": ["b", "e", "a", "u", "t", "i", "f", "u", "l", "x", "y"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "beautiful",
-            "translation": "красивый"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "beautiful",
-            "translation": "красивый"
-          }
+          "choose": { "type": "choose", "question": "beautiful", "options": ["красивый", "уродливый", "большой", "маленький"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "beautiful", "translation": "красивый", "letters": ["b", "e", "a", "u", "t", "i", "f", "u", "l", "x", "y"] },
+          "type": { "type": "type", "targetWord": "beautiful", "translation": "красивый" },
+          "sentence": { "type": "sentence", "targetWord": "beautiful", "translation": "красивый" }
         }
       },
       {
-        "id": "w4",
-        "en": "important",
-        "ru": ["важный", "значимый"],
-        "status": "studying",
+        "id": "w4", "en": "important", "ru": ["важный", "значимый"], "status": "new",
+        "pos": "прил.", "ipa": "/ɪmˈpɔːrtnt/",
+        "examples": [{ "en": "This is an important decision.", "ru": "Это важное решение." }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "important",
-            "options": ["важный", "неважный", "интересный", "скучный"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "important",
-            "translation": "важный",
-            "letters": ["i", "m", "p", "o", "r", "t", "a", "n", "t", "s", "e"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "important",
-            "translation": "важный"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "important",
-            "translation": "важный"
-          }
+          "choose": { "type": "choose", "question": "important", "options": ["важный", "неважный", "интересный", "скучный"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "important", "translation": "важный", "letters": ["i", "m", "p", "o", "r", "t", "a", "n", "t", "s", "e"] },
+          "type": { "type": "type", "targetWord": "important", "translation": "важный" },
+          "sentence": { "type": "sentence", "targetWord": "important", "translation": "важный" }
         }
       },
       {
-        "id": "w4a",
-        "en": "difficult",
-        "ru": ["трудный", "сложный"],
-        "status": "new",
+        "id": "w4a", "en": "difficult", "ru": ["трудный", "сложный"], "status": "new",
+        "pos": "прил.", "ipa": "/ˈdɪfɪkəlt/",
+        "examples": [{ "en": "The exam was very difficult.", "ru": "Экзамен был очень трудным." }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "difficult",
-            "options": ["трудный", "легкий", "простой", "понятный"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "difficult",
-            "translation": "трудный",
-            "letters": ["d", "i", "f", "f", "i", "c", "u", "l", "t", "a", "b"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "difficult",
-            "translation": "трудный"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "difficult",
-            "translation": "трудный"
-          }
+          "choose": { "type": "choose", "question": "difficult", "options": ["трудный", "легкий", "простой", "понятный"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "difficult", "translation": "трудный", "letters": ["d", "i", "f", "f", "i", "c", "u", "l", "t", "a", "b"] },
+          "type": { "type": "type", "targetWord": "difficult", "translation": "трудный" },
+          "sentence": { "type": "sentence", "targetWord": "difficult", "translation": "трудный" }
         }
       },
       {
-        "id": "w4b",
-        "en": "easy",
-        "ru": ["легкий", "простой"],
-        "status": "new",
+        "id": "w4b", "en": "easy", "ru": ["легкий", "простой"], "status": "new",
+        "pos": "прил.", "ipa": "/ˈiːzi/",
+        "examples": [{ "en": "This task is easy for me.", "ru": "Эта задача для меня лёгкая." }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "easy",
-            "options": ["легкий", "трудный", "сложный", "тяжелый"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "easy",
-            "translation": "легкий",
-            "letters": ["e", "a", "s", "y", "b", "c"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "easy",
-            "translation": "легкий"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "easy",
-            "translation": "легкий"
-          }
+          "choose": { "type": "choose", "question": "easy", "options": ["легкий", "трудный", "сложный", "тяжелый"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "easy", "translation": "легкий", "letters": ["e", "a", "s", "y", "b", "c"] },
+          "type": { "type": "type", "targetWord": "easy", "translation": "легкий" },
+          "sentence": { "type": "sentence", "targetWord": "easy", "translation": "легкий" }
         }
       },
       {
-        "id": "w4c",
-        "en": "interesting",
-        "ru": ["интересный"],
-        "status": "new",
+        "id": "w4c", "en": "interesting", "ru": ["интересный"], "status": "new",
+        "pos": "прил.", "ipa": "/ˈɪntrəstɪŋ/",
+        "examples": [{ "en": "I read an interesting book.", "ru": "Я прочитал интересную книгу." }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "interesting",
-            "options": ["интересный", "скучный", "неинтересный", "странный"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "interesting",
-            "translation": "интересный",
-            "letters": ["i", "n", "t", "e", "r", "e", "s", "t", "i", "n", "g", "a", "b"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "interesting",
-            "translation": "интересный"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "interesting",
-            "translation": "интересный"
-          }
+          "choose": { "type": "choose", "question": "interesting", "options": ["интересный", "скучный", "неинтересный", "странный"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "interesting", "translation": "интересный", "letters": ["i", "n", "t", "e", "r", "e", "s", "t", "i", "n", "g", "a", "b"] },
+          "type": { "type": "type", "targetWord": "interesting", "translation": "интересный" },
+          "sentence": { "type": "sentence", "targetWord": "interesting", "translation": "интересный" }
+        }
+      },
+      {
+        "id": "w4d", "en": "knowledge", "ru": ["знание"], "status": "new",
+        "pos": "сущ.", "ipa": "/ˈnɒlɪdʒ/",
+        "examples": [{ "en": "Knowledge is power.", "ru": "Знание — сила." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "knowledge", "options": ["знание", "умение", "опыт", "навык"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "knowledge", "translation": "знание", "letters": ["k", "n", "o", "w", "l", "e", "d", "g", "e", "a", "t"] },
+          "type": { "type": "type", "targetWord": "knowledge", "translation": "знание" },
+          "sentence": { "type": "sentence", "targetWord": "knowledge", "translation": "знание" }
+        }
+      },
+      {
+        "id": "w4e", "en": "decision", "ru": ["решение"], "status": "new",
+        "pos": "сущ.", "ipa": "/dɪˈsɪʒn/",
+        "examples": [{ "en": "It was a hard decision.", "ru": "Это было трудное решение." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "decision", "options": ["решение", "проблема", "вопрос", "ответ"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "decision", "translation": "решение", "letters": ["d", "e", "c", "i", "s", "i", "o", "n", "a", "t"] },
+          "type": { "type": "type", "targetWord": "decision", "translation": "решение" },
+          "sentence": { "type": "sentence", "targetWord": "decision", "translation": "решение" }
+        }
+      },
+      {
+        "id": "w4f", "en": "experience", "ru": ["опыт"], "status": "new",
+        "pos": "сущ.", "ipa": "/ɪkˈspɪriəns/",
+        "examples": [{ "en": "She has a lot of experience.", "ru": "У неё большой опыт." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "experience", "options": ["опыт", "знание", "умение", "навык"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "experience", "translation": "опыт", "letters": ["e", "x", "p", "e", "r", "i", "e", "n", "c", "e", "a", "t"] },
+          "type": { "type": "type", "targetWord": "experience", "translation": "опыт" },
+          "sentence": { "type": "sentence", "targetWord": "experience", "translation": "опыт" }
+        }
+      },
+      {
+        "id": "w4g", "en": "achieve", "ru": ["достигать"], "status": "new",
+        "pos": "глаг.", "ipa": "/əˈtʃiːv/",
+        "examples": [{ "en": "You can achieve your goals.", "ru": "Ты можешь достичь своих целей." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "achieve", "options": ["достигать", "терять", "начинать", "заканчивать"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "achieve", "translation": "достигать", "letters": ["a", "c", "h", "i", "e", "v", "e", "b", "t"] },
+          "type": { "type": "type", "targetWord": "achieve", "translation": "достигать" },
+          "sentence": { "type": "sentence", "targetWord": "achieve", "translation": "достигать" }
+        }
+      },
+      {
+        "id": "w4h", "en": "improve", "ru": ["улучшать"], "status": "new",
+        "pos": "глаг.", "ipa": "/ɪmˈpruːv/",
+        "examples": [{ "en": "I want to improve my English.", "ru": "Я хочу улучшить свой английский." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "improve", "options": ["улучшать", "ухудшать", "ломать", "чинить"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "improve", "translation": "улучшать", "letters": ["i", "m", "p", "r", "o", "v", "e", "a", "t"] },
+          "type": { "type": "type", "targetWord": "improve", "translation": "улучшать" },
+          "sentence": { "type": "sentence", "targetWord": "improve", "translation": "улучшать" }
+        }
+      },
+      {
+        "id": "w4i", "en": "consider", "ru": ["рассматривать", "учитывать"], "status": "new",
+        "pos": "глаг.", "ipa": "/kənˈsɪdər/",
+        "examples": [{ "en": "Please consider my offer.", "ru": "Пожалуйста, рассмотри моё предложение." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "consider", "options": ["рассматривать", "игнорировать", "забывать", "отвергать"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "consider", "translation": "рассматривать", "letters": ["c", "o", "n", "s", "i", "d", "e", "r", "a", "t"] },
+          "type": { "type": "type", "targetWord": "consider", "translation": "рассматривать" },
+          "sentence": { "type": "sentence", "targetWord": "consider", "translation": "рассматривать" }
+        }
+      },
+      {
+        "id": "w4j", "en": "although", "ru": ["хотя"], "status": "new",
+        "pos": "союз", "ipa": "/ɔːlˈðoʊ/",
+        "examples": [{ "en": "Although it was raining, we went out.", "ru": "Хотя шёл дождь, мы вышли на улицу." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "although", "options": ["хотя", "потому что", "поэтому", "если"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "although", "translation": "хотя", "letters": ["a", "l", "t", "h", "o", "u", "g", "h", "e", "r"] },
+          "type": { "type": "type", "targetWord": "although", "translation": "хотя" },
+          "sentence": { "type": "sentence", "targetWord": "although", "translation": "хотя" }
+        }
+      },
+      {
+        "id": "w4k", "en": "however", "ru": ["однако", "тем не менее"], "status": "new",
+        "pos": "нареч.", "ipa": "/haʊˈevər/",
+        "examples": [{ "en": "It's expensive; however, it's worth it.", "ru": "Это дорого; однако оно того стоит." }],
+        "exercises": {
+          "choose": { "type": "choose", "question": "however", "options": ["однако", "поэтому", "потому что", "итак"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "however", "translation": "однако", "letters": ["h", "o", "w", "e", "v", "e", "r", "a", "t"] },
+          "type": { "type": "type", "targetWord": "however", "translation": "однако" },
+          "sentence": { "type": "sentence", "targetWord": "however", "translation": "однако" }
         }
       }
     ]
@@ -325,63 +311,25 @@
     "total": 2,
     "cards": [
       {
-        "id": "w5",
-        "en": "magnificent",
-        "ru": ["великолепный", "величественный"],
-        "status": "new",
+        "id": "w5", "en": "magnificent", "ru": ["великолепный", "величественный"], "status": "new",
+        "pos": "прил.", "ipa": "/mæɡˈnɪfɪsnt/",
+        "examples": [{ "en": "The view from the top was magnificent.", "ru": "Вид с вершины был великолепным." }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "magnificent",
-            "options": ["великолепный", "обычный", "плохой", "средний"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "magnificent",
-            "translation": "великолепный",
-            "letters": ["m", "a", "g", "n", "i", "f", "i", "c", "e", "n", "t", "o", "s"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "magnificent",
-            "translation": "великолепный"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "magnificent",
-            "translation": "великолепный"
-          }
+          "choose": { "type": "choose", "question": "magnificent", "options": ["великолепный", "обычный", "плохой", "средний"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "magnificent", "translation": "великолепный", "letters": ["m", "a", "g", "n", "i", "f", "i", "c", "e", "n", "t", "o", "s"] },
+          "type": { "type": "type", "targetWord": "magnificent", "translation": "великолепный" },
+          "sentence": { "type": "sentence", "targetWord": "magnificent", "translation": "великолепный" }
         }
       },
       {
-        "id": "w6",
-        "en": "extraordinary",
-        "ru": ["необычайный", "экстраординарный"],
-        "status": "studying",
+        "id": "w6", "en": "extraordinary", "ru": ["необычайный", "выдающийся"], "status": "new",
+        "pos": "прил.", "ipa": "/ɪkˈstrɔːrdɪneri/",
+        "examples": [{ "en": "She has an extraordinary talent for music.", "ru": "У неё необычайный талант к музыке." }],
         "exercises": {
-          "choose": {
-            "type": "choose",
-            "question": "extraordinary",
-            "options": ["необычайный", "обычный", "простой", "типичный"],
-            "correctIndex": 0
-          },
-          "assemble": {
-            "type": "assemble",
-            "targetWord": "extraordinary",
-            "translation": "необычайный",
-            "letters": ["e", "x", "t", "r", "a", "o", "r", "d", "i", "n", "a", "r", "y", "s", "b"]
-          },
-          "type": {
-            "type": "type",
-            "targetWord": "extraordinary",
-            "translation": "необычайный"
-          },
-          "sentence": {
-            "type": "sentence",
-            "targetWord": "extraordinary",
-            "translation": "необычайный"
-          }
+          "choose": { "type": "choose", "question": "extraordinary", "options": ["необычайный", "обычный", "простой", "типичный"], "correctIndex": 0 },
+          "assemble": { "type": "assemble", "targetWord": "extraordinary", "translation": "необычайный", "letters": ["e", "x", "t", "r", "a", "o", "r", "d", "i", "n", "a", "r", "y", "s", "b"] },
+          "type": { "type": "type", "targetWord": "extraordinary", "translation": "необычайный" },
+          "sentence": { "type": "sentence", "targetWord": "extraordinary", "translation": "необычайный" }
         }
       }
     ]

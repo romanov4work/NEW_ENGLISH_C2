@@ -1,27 +1,28 @@
 // Дизайн-система: черно-белая палитра + акцентный цвет
 export const COLORS = {
-  // Основные цвета
-  black: '#000',
-  white: '#fff',
+  // В тёмной теме семантика инвертирована:
+  // black = основной текст (светлый), white = фон экранов (тёмный).
+  black: '#F2F3F7',  // основной текст
+  white: '#0D0E14',  // фон экранов
 
-  // Серые оттенки
+  // Серые оттенки (тёмная тема: 50 — самые тёмные поверхности → 700 светлее)
   gray: {
-    50: '#f6f6f6',   // фон карточек
-    100: '#e5e5e5',  // borders
-    200: '#ccc',     // arrows
-    300: '#bbb',     // placeholder
-    400: '#999',     // meta text
-    500: '#888',     // secondary text
-    600: '#666',     // tertiary text
-    700: '#555',     // icons
+    50: '#171821',   // карточки/поверхности
+    100: '#23252F',  // границы
+    200: '#3A3D4D',  // тонкие элементы / стрелки
+    300: '#5A5E73',  // placeholder
+    400: '#8A8FA6',  // meta text
+    500: '#9AA0B4',  // secondary text
+    600: '#B4B9CC',  // tertiary text
+    700: '#D2D6E2',  // icons
   },
 
-  // Акцентный цвет (розовый для кнопок)
-  primary: '#000000', // PINK из старого апп
+  // Акцентный цвет (фиолетовый)
+  primary: '#1E40AF',
 
   // Семантические цвета
-  error: '#ff4444',
-  success: '#4CAF50',
+  error: '#FF5C7A',
+  success: '#34D399',
 };
 
 // Типография
@@ -44,6 +45,13 @@ export const TYPOGRAPHY = {
     semibold: '600' as const,
     bold: '700' as const,
   },
+};
+
+// Шрифт (премиум) — Inter
+export const FONT = {
+  regular: 'Inter_400Regular',
+  semibold: 'Inter_600SemiBold',
+  bold: 'Inter_700Bold',
 };
 
 // Отступы
@@ -99,9 +107,10 @@ export const COMMON_STYLES = {
   },
 
   buttonText: {
-    color: COLORS.white,
+    color: '#fff',
     fontSize: TYPOGRAPHY.size.lg,
     fontWeight: TYPOGRAPHY.weight.bold,
+    fontFamily: FONT.bold,
   },
 
   header: {
@@ -116,5 +125,34 @@ export const COMMON_STYLES = {
     fontSize: TYPOGRAPHY.size.xxxl,
     fontWeight: TYPOGRAPHY.weight.bold,
     color: COLORS.black,
+    fontFamily: FONT.bold,
   },
+};
+
+
+// === Тёмная премиум-тема (редизайн) ===
+export const DARK = {
+  bg: '#08090E',
+  card: '#10111A',
+  cardAlt: '#171925',
+  border: '#222536',
+  text: '#F4F5FA',
+  textDim: '#9AA0B4',
+  textMute: '#6B7090',
+};
+
+export const GRADIENTS = {
+  purple: ['#3B82F6', '#1E40AF'] as const,
+  pink: ['#3B82F6', '#1E40AF'] as const,
+  blue: ['#3B82F6', '#1E40AF'] as const,
+  cta: ['#2563EB', '#1E3A8A'] as const,
+  tab: ['#2563EB', '#1E3A8A'] as const,
+};
+
+export const STAT_COLORS = {
+  reviews: '#1E3A8A',
+  added: '#2563EB',
+  started: '#60A5FA',
+  learned: '#60A5FA',
+  minutes: '#93C5FD',
 };
